@@ -1,10 +1,14 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
 $uid = $_GET["uid"];
 $month = $_GET["month"];
 $year = $_GET["year"];
 $amount = $_GET["amount"];
 $pbond = $_GET["pbond"];
 $pstock = $_GET["pstock"];
+$pcash = $_GET["pcash"];
 
 function readCSV($csvFile){
 	$line_hash = array();
@@ -33,6 +37,23 @@ $bond_share_price = $fbndx_price*10;
 
 $stock_shares_bought = ($amount*$pstock)/$stock_share_price;
 $bond_shares_bought = ($amount*$pbond)/$bond_share_price;
+$cash_saved = $amount*$pcash;
+$totalvalue = ($stock_shares_bought*$stock_share_price) + ($bond_shares_bought*$bond_share_price) + $cash_saved;
+
+$conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
+mysql_select_db("retire") or die(mysql_error());
+
+$query_sum = "select sum(stock), sum(bond), sum(cash) from activity where uid = $uid;";
+$result_sum = mysql_query($query_sum) or die('Query failed: ' . mysql_error());
+
+while($row_sum = mysql_fetch_array($result_sum)) {
+	$stocksum = $row_sum[0];
+	$bondsum = $row_sum[1];
+	$cashsum = $row_sum[2];
+}
+$total_sum = ($stocksum*$stock_share_price) + ($bondsum*$bond_share_price) + $cashsum;
+
+$totalvalue = $totalvalue + $total_sum;
 
 echo "$uid, $month, $year, $stock_shares_bought, $bond_shares_bought";
 echo "<br>";
@@ -40,13 +61,14 @@ echo "$stock_share_price, $bond_share_price, $stock_shares_bought, $bond_shares_
 echo "<br>";
 echo "$uid,$month,$year,$pstock,$pbond,$djia_price,$fbndx_price,$amount";
 
-$conn = mysql_connect("localhost", "root", "") or die(mysql_error());
-mysql_select_db("retire") or die(mysql_error());
-$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $stock_share_price, $bond_share_price)";
+$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue);";
 
-//$query = 'INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought)';
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
-//http://localhost/retire/save_month.php?year=1999&month=01&pbond=.3&pstock=.7&uid=1&amount=1000
+$stocksum = 0;
+$bondsum = 0;
+$cashsum = 0;
+
+
 
 ?>

@@ -1,6 +1,7 @@
 <?php
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
+header('Content-type: text/plain');
 
 $uid = $_GET["uid"];
 $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
@@ -17,7 +18,7 @@ $cashsum = 0;
 while($row = mysql_fetch_array($result)) {
 	$stocksum = $row[0];
 	$bondsum = $row[1];
-	$cashsum = $row[2];
+	$cashsum += $row[2];
 }
 
 $stockprice = 0;
@@ -27,5 +28,19 @@ while($row2 = mysql_fetch_array($result2)) {
 	$bondprice = $row2[2];
 }
 
-echo ($stocksum*$stockprice) + ($bondsum*$bondprice) + $cashsum;
 ?>
+
+[
+	{
+		'label' : 'Stocks',
+		'value' : <?php echo $stocksum*$stockprice; ?>
+	},
+	{
+		'label' : 'Bonds',
+		'value' : <?php echo $bondsum*$bondprice; ?>
+	},
+	{
+		'label' : 'Cash',
+		'value' : <?php echo $cashsum; ?>
+	}
+]

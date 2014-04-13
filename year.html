@@ -1,19 +1,27 @@
 <html !doctype>
 <head>
+	<link rel="stylesheet" type="text/css" href="year.css">
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/d3/d3.min.js"></script>
 </head>
 <body>
+	<button id="clearDBBtn">Clear DB</button>
+	<hr>
+
 	<form id="yearForm">
 	<label>UID</label><input type="text" value="100" name="uid">
 	<label>Month</label><input type="text" value="01" name="month">
 	<label>Year</label><input type="text" value="1980" name="year">
 	<br>
-	<label>Percent stock</label><input type="text" value=".5" name="pstock">
-	<label>Percent bond</label><input type="text" value=".5" name="pbond">
+	<label>Percent stock</label><input type="text" value=".4" name="pstock">
+	<label>Percent bond</label><input type="text" value=".4" name="pbond">
+	<label>Percent cash</label><input type="text" value=".2" name="pcash">
 	<label>Amount</label><input type="text" value="1000" name="amount">
 	<input type="submit">
 	</form>
 	<label><div id="sum">0</div>
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<div id="histChart"></div>
+	<div id="balanceChart"></div>
 	<script src="year.js"></script>
 </body>
 </html>
