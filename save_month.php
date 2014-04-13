@@ -40,7 +40,7 @@ echo "$stock_share_price, $bond_share_price, $stock_shares_bought, $bond_shares_
 echo "<br>";
 echo "$uid,$month,$year,$pstock,$pbond,$djia_price,$fbndx_price,$amount";
 
-$conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
+$conn = mysql_connect("localhost", "root", "") or die(mysql_error());
 mysql_select_db("retire") or die(mysql_error());
 $query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $stock_share_price, $bond_share_price)";
 
