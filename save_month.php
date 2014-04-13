@@ -47,6 +47,6 @@ $query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought
 //$query = 'INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought)';
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
-//http://172.16.4.140/retire/save_month.php?year=1999&month=01&pbond=.3&pstock=.7&uid=1&amount=1000
+//http://localhost/retire/save_month.php?year=1999&month=01&pbond=.3&pstock=.7&uid=1&amount=1000
 
 ?>
