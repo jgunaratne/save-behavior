@@ -1,0 +1,19 @@
+<script>
+function calcReturns(yearlySavings, percentRet, years) {
+	var val = 0;
+	for (var i = 0; i < years; i++) {
+		val += yearlySavings;
+		val = val * (1 + percentRet);
+	}
+	return val;
+}
+
+function calcFV(save, percentRet, years) {
+	var val = save;
+	for (var i = 0; i < years; i++) {
+		val += val * percentRet;
+	}
+	return Math.round(val);
+}
+console.log(calcFV(10000,0.10,10));
+</script>
