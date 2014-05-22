@@ -30,6 +30,10 @@ polyline{
 	fill: none;
 }
 
+text {
+  font-size: 10px;
+}
+
 #balanceChart svg {
   height: 320px;
   width: 480px;
@@ -102,6 +106,7 @@ polyline{
 
 .save {
   font-size: 28px;
+  font-weight: bold;
 }
 
 h2 {
@@ -127,4 +132,8 @@ h1 {
 
 input[disabled] {
   opacity: .25;
+}
+
+.hide {
+  display: none;
 }

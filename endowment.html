@@ -58,8 +58,8 @@
 			</div>
 			<div class="col-md-6 goals">
 				<div id="histChart"></div>
-				<div class="savings"><label>Amount saved to date</label><div id="sum" class="save">0</div></div>
-				<div class="goal"><label>Savings goal</label><div id="goal" class="save">1,100,000</div></div>
+				<div class="savings"><label>Amount saved to date</label><div id="sum" class="save hide">0</div><div id="displaySum" class="save"></div></div>
+				<div class="goal"><label>Savings goal</label><div id="goal" class="save">$1,100,000</div></div>
 				<div class="goal"><label>Estimated outcome</label><div id="estimate" class="save">0</div></div>
 			</div>
 		</div>
@@ -83,7 +83,7 @@
 				<div class="clear"></div>
 				<div class="outcome">
 					<div class="outcome-line left"></div>
-					<div class="future-val" id="worstCase">$120</div>
+					<div class="future-val red" id="worstCase">$120</div>
 					<div class="desc">Worst case</div>
 				</div>
 				<div class="outcome">
@@ -93,7 +93,7 @@
 				</div>
 				<div class="outcome">
 					<div class="outcome-line right"></div>
-					<div class="future-val" id="bestCase">$640</div>
+					<div class="future-val green" id="bestCase">$640</div>
 					<div class="desc">Best case</div>
 				</div>
 			</div>

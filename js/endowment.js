@@ -2,6 +2,17 @@ var stockRet = .078;
 var bondRet = .065;
 var cashRet = 0;
 
+var stockVol = 0.15;
+var bondVol = 0.04;
+var cashVol = 0;
+
+var portRet = 0;
+var portVol = 0;
+
+var currYear = 1980;
+var currMonth = 1;
+
+
 $('#yearForm').submit(function(e) {
 
 	$('#submitBtn').attr('disabled', 'disabled');
@@ -29,15 +40,11 @@ $('#yearForm').submit(function(e) {
 
 		}
 	}
-
-	
-
-	
 	
 	e.preventDefault();
 });
 
-var portRet = 0;
+
 
 function getSum() {
 	$.ajax({
@@ -48,7 +55,8 @@ function getSum() {
 		},
 		success: function(data) {
 			var sum = Math.round(data*1);
-			$('#sum').html(sum);
+			$('#sum').text(sum);
+			$('#displaySum').text('$'+numberWithCommas(sum));
 
 			var year = eval($('input[name=year]').val());
 			var futureYear = year + 0;
@@ -56,6 +64,9 @@ function getSum() {
 
 			year++;
 			$('input[name=year]').val(year);
+
+			//$('input[name=year]').val(currYear);
+	  		$('#year').text(year);
 			
 			renderHistChart();
 			renderBalanceChart();
@@ -118,7 +129,14 @@ function renderHistChart() {
 	  data.forEach(function(d) {
 	    d.date = parseDate(d.date);
 	    d.close = +d.close;
+
+	    var dYear = d.date.getFullYear();
+	    if (dYear > currYear) {
+	    	currYear = dYear;
+		}
 	  });
+
+	  
 
 	  x.domain(d3.extent(data, function(d) { return d.date; }));
 	  y.domain(d3.extent(data, function(d) { return d.close; }));
@@ -147,8 +165,6 @@ function renderHistChart() {
 	      
 	});	
 }
-
-renderHistChart();
 
 function renderBalanceChart() {
 	$("#balanceChart").html('');
@@ -309,8 +325,6 @@ function renderPie(data) {
 };
 }
 
-renderBalanceChart();
-
 function calcReturns(yearlySavings, percentRet, years) {
 	var val = 0;
 	for (var i = 0; i < years; i++) {
@@ -337,12 +351,12 @@ function updateEstimate() {
 	var remainingYears = 2015 - year;
 	var estimate = calcReturns(amount,portRet,remainingYears);
 	var sum = ($('#sum').text() * 1)
-	console.log(sum);
+	//console.log(sum);
 
 	//console.log(estimate);
 
 	var actualEst = estimate + sum;
-	$('#estimate').text(actualEst);
+	$('#estimate').text('$'+numberWithCommas(actualEst));
 
 	updateCases();
 
@@ -356,6 +370,14 @@ function calcFV(save, percentRet, years) {
 	return Math.round(val);
 }
 
+function numberWithCommas(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x;
+}
+
 function updateCases() {
 	var pstock = $('input[name=pstock]').val()*1;
 	var pbond = $('input[name=pbond]').val()*1;
@@ -364,19 +386,29 @@ function updateCases() {
 
 	var totalPercent =  pstock + pbond + pcash;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
+	portVol = stockVol*pstock + bondVol*pbond + cashVol*pcash;
 
 	var year = $('input[name=year]').val();
 	var remainingYears = 2015 - year;
 
-	var estLow = calcFV(amount,portRet - .005,remainingYears);
+	var estLow = Math.round(calcFV(amount,portRet-portVol, remainingYears));
 	var estLikely = calcFV(amount,portRet,remainingYears);
-	var estHigh = calcFV(amount,portRet + .005,remainingYears);
+	var estHigh = Math.round(calcFV(amount,portRet+portRet, remainingYears));
+
+	//console.log(portVol);
 
 
-	$('#savedToday').text(amount);
-	$('#worstCase').text(estLow);
-	$('#likelyCase').text(estLikely);
-	$('#bestCase').text(estHigh);
+	$('#savedToday').text('$'+numberWithCommas(amount));
+	$('#worstCase').text('$'+numberWithCommas(estLow));
+	$('#likelyCase').text('$'+numberWithCommas(estLikely));
+	$('#bestCase').text('$'+numberWithCommas(estHigh));
 }
 
-updateCases();
+function init() {
+	renderBalanceChart();
+	renderHistChart();
+	updateCases();
+	getSum();
+}
+
+init();
