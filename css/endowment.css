@@ -140,3 +140,8 @@ input[disabled] {
 .hide {
   display: none;
 }
+
+.amount {
+  width: 160px;
+  float: left;
+}

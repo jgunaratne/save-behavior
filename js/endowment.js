@@ -47,7 +47,7 @@ $('#yearForm').submit(function(e) {
 
 		}
 	}
-	
+	checkDateCount();
 	e.preventDefault();
 });
 
@@ -120,7 +120,9 @@ function renderHistChart() {
 	    .orient("left");
 
 	var line = d3.svg.line()
-	    .x(function(d) { return x(d.date); })
+	    .x(function(d) { 
+	    	return x(d.date); 
+	    })
 	    .y(function(d) { return y(d.close); });
 
 	var svg = d3.select("#histChart").append("svg")
@@ -437,3 +439,5 @@ function init() {
 }
 
 init();
+
+var app = new App();
