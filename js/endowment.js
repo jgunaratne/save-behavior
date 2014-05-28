@@ -1,3 +1,7 @@
+var App = function() {
+
+};
+
 var stockRet = .078;
 var bondRet = .065;
 var cashRet = 0;
@@ -20,11 +24,14 @@ $('#yearForm').submit(function(e) {
 	var year = $('input[name=year]').val();
 
 	if (year < 2015) {
-		var pstock = $('input[name=pstock]').val()*1;
-		var pbond = $('input[name=pbond]').val()*1;
-		var pcash = $('input[name=pcash]').val()*1;
+		var pstock = $('input[name=pstock]').val()/100;
+		var pbond = $('input[name=pbond]').val()/100;
+		var pcash = $('input[name=pcash]').val()/100;
+
+		console.log(pstock, pbond, pcash);
 
 		var totalPercent =  pstock + pbond + pcash;
+		console.log(totalPercent);
 
 		if (pstock + pbond + pcash != 1) {
 			alert('Stock + bond + cash percents must add up to 100%.');
@@ -340,9 +347,9 @@ $('.asset').change(function() {
 
 function updateEstimate() {
 	var year = eval($('input[name=year]').val());
-	var pstock = $('input[name=pstock]').val()*1;
-	var pbond = $('input[name=pbond]').val()*1;
-	var pcash = $('input[name=pcash]').val()*1;
+	var pstock = $('input[name=pstock]').val()/100;
+	var pbond = $('input[name=pbond]').val()/100;
+	var pcash = $('input[name=pcash]').val()/100;
 	var amount = $('input[name=amount]').val()*1;
 
 	var totalPercent =  pstock + pbond + pcash;
@@ -379,9 +386,9 @@ function numberWithCommas(x) {
 }
 
 function updateCases() {
-	var pstock = $('input[name=pstock]').val()*1;
-	var pbond = $('input[name=pbond]').val()*1;
-	var pcash = $('input[name=pcash]').val()*1;
+	var pstock = $('input[name=pstock]').val()/100;
+	var pbond = $('input[name=pbond]').val()/100;
+	var pcash = $('input[name=pcash]').val()/100;
 	var amount = $('input[name=amount]').val()*1;
 
 	var totalPercent =  pstock + pbond + pcash;
@@ -404,7 +411,25 @@ function updateCases() {
 	$('#bestCase').text('$'+numberWithCommas(estHigh));
 }
 
+function checkDateCount() {
+	$.ajax({
+		type: "GET",
+		url: "date_count.php",
+		success: function(data) {
+			var count = Math.round(data*1);
+			if (count > 5) {
+				$('#pageData').hide();
+				$('#pageMsg').show();
+			} else {
+				$('#pageData').show();
+				$('#pageMsg').hide();
+			}
+		}
+	});
+}
+
 function init() {
+	checkDateCount();
 	renderBalanceChart();
 	renderHistChart();
 	updateCases();

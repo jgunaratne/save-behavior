@@ -1,5 +1,5 @@
 body {
-
+  font-family: franklin;
 }
 
 .axis path,
@@ -85,7 +85,8 @@ text {
 
 .outcome .future-val {
   font-size: 24px;
-  font-weight: bold;
+  font-family: cheltenham;
+  font-weight: normal;
 }
 
 .green {
@@ -106,15 +107,17 @@ text {
 
 .save {
   font-size: 28px;
-  font-weight: bold;
+  font-family: cheltenham;
 }
 
 h2 {
   margin: 0;
+  font-family: cheltenham;
 }
 
 h1 {
   margin: 0;
+  font-family: cheltenham;
 }
 
 .desc {

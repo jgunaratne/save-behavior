@@ -1,6 +1,7 @@
 <html !doctype>
 <head>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/fonts.css">
 	<link rel="stylesheet" type="text/css" href="css/endowment.css">
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/d3/d3.min.js"></script>
@@ -25,7 +26,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-	<div class="container">
+	<div class="container" id="pageData">
 		<div class="row">
 			<div class="col-md-6">
 				<h2>Your retirement portfolio</h2>
@@ -46,11 +47,11 @@
 				<label>Year</label><input type="text" value="1980" name="year">
 				<br>
 			</div>
-				<label>Percent stock</label><input type="text" value=".4" name="pstock" class="asset">
+				<label>Percent stock</label><input type="text" value="40" name="pstock" class="asset">%
 				<div class="clear"></div>
-				<label>Percent bond</label><input type="text" value=".4" name="pbond" class="asset">
+				<label>Percent bond</label><input type="text" value="40" name="pbond" class="asset">%
 				<div class="clear"></div>
-				<label>Percent cash</label><input type="text" value=".2" name="pcash" class="asset">
+				<label>Percent cash</label><input type="text" value="20" name="pcash" class="asset">%
 				<div class="clear"></div>
 				<label>Yearly amount saved</label><input type="text" value="7500" name="amount" class="asset">
 				<input type="submit" id="submitBtn">
@@ -99,6 +100,10 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="container" id="pageMsg">
+<p>Please return tomorrow to complete the next part of this study.</p>
+</div>
 	<script src="js/endowment.js"></script>
 </body>
 </html>

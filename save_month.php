@@ -6,9 +6,9 @@ $uid = $_GET["uid"];
 $month = $_GET["month"];
 $year = $_GET["year"];
 $amount = $_GET["amount"];
-$pbond = $_GET["pbond"];
-$pstock = $_GET["pstock"];
-$pcash = $_GET["pcash"];
+$pbond = $_GET["pbond"]/100;
+$pstock = $_GET["pstock"]/100;
+$pcash = $_GET["pcash"]/100;
 
 function readCSV($csvFile){
 	$line_hash = array();
@@ -61,7 +61,7 @@ echo "$stock_share_price, $bond_share_price, $stock_shares_bought, $bond_shares_
 echo "<br>";
 echo "$uid,$month,$year,$pstock,$pbond,$djia_price,$fbndx_price,$amount";
 
-$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue);";
+$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue, now());";
 
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
