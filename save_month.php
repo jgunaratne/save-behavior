@@ -3,6 +3,7 @@
 // ini_set('display_errors', 1);
 
 $uid = $_GET["uid"];
+$mturkworkerid = $_GET["mturkworkerid"];
 $month = $_GET["month"];
 $year = $_GET["year"];
 $amount = $_GET["amount"];
@@ -43,7 +44,7 @@ $totalvalue = ($stock_shares_bought*$stock_share_price) + ($bond_shares_bought*$
 $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
 mysql_select_db("retire") or die(mysql_error());
 
-$query_sum = "select sum(stock), sum(bond), sum(cash) from activity where uid = $uid;";
+$query_sum = "select sum(stock), sum(bond), sum(cash) from activity where mturkworkerid = '$mturkworkerid';";
 $result_sum = mysql_query($query_sum) or die('Query failed: ' . mysql_error());
 
 while($row_sum = mysql_fetch_array($result_sum)) {
@@ -59,9 +60,9 @@ echo "$uid, $month, $year, $stock_shares_bought, $bond_shares_bought";
 echo "<br>";
 echo "$stock_share_price, $bond_share_price, $stock_shares_bought, $bond_shares_bought";
 echo "<br>";
-echo "$uid,$month,$year,$pstock,$pbond,$djia_price,$fbndx_price,$amount";
+echo "$uid,$month,$year,$pstock,$pbond,$djia_price,$fbndx_price,$amount,$mturkworkerid";
 
-$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue, now());";
+$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue, now(), '$mturkworkerid');";
 
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 

@@ -1,7 +1,3 @@
-var App = function() {
-
-};
-
 var stockRet = .078;
 var bondRet = .065;
 var cashRet = 0;
@@ -16,22 +12,23 @@ var portVol = 0;
 var currYear = 1980;
 var currMonth = 1;
 
+var App = function() {
 
+};
 
-
-
-
-function getSum() {
+App.prototype.getSum = function() {
+	var t = this;
 	$.ajax({
 		type: "GET",
 		url: "sum.php",
 		data: { 
-			uid: $('input[name=uid]').val()
+			uid: $('input[name=uid]').val(),
+			mturkworkerid: $('input[name=mturkworkerid]').val()
 		},
 		success: function(data) {
 			var sum = Math.round(data*1);
 			$('#sum').text(sum);
-			$('#displaySum').text('$'+numberWithCommas(sum));
+			$('#displaySum').text('$'+t.numberWithCommas(sum));
 
 			var year = eval($('input[name=year]').val());
 			var futureYear = year + 0;
@@ -41,22 +38,21 @@ function getSum() {
 			$('input[name=year]').val(year);
 
 			//$('input[name=year]').val(currYear);
-	  		$('#year').text(year);
+			var simYear = year + 40;
+	  		$('#year').text(simYear);
 			
-			renderHistChart();
-			renderBalanceChart();
-
-			
-			updateEstimate();
+			t.renderHistChart();
+			t.renderBalanceChart();
+			t.updateEstimate();
 
 			$('#submitBtn').attr('disabled', null);
 
 		}
 	});
-}
+};
 
 
-function renderHistChart() {
+App.prototype.renderHistChart = function() {
 	$("#histChart").html('');
 	var margin = {top: 50, right: 50, bottom: 50, left: 50},
     width = 480 - margin.left - margin.right,
@@ -90,7 +86,7 @@ function renderHistChart() {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.csv("history.php?uid=100", function(error, data) {
+	d3.csv("history.php?mturkworkerid=AZ3456EXAMPLE", function(error, data) {
 
 	  if (data.length > 0) {
 
@@ -132,9 +128,10 @@ function renderHistChart() {
 	  }
 	      
 	});	
-}
+};
 
-function renderBalanceChart() {
+App.prototype.renderBalanceChart = function() {
+	var t = this;
 	$("#balanceChart").html('');
 	var svg = d3.select("#balanceChart")
 	.append("svg")
@@ -177,25 +174,24 @@ $.ajax({
 		type: "GET",
 		url: "balance.php",
 		data: { 
-			uid: $('input[name=uid]').val()
+			uid: $('input[name=uid]').val(),
+			mturkworkerid: $('input[name=mturkworkerid]').val()
 		},
 		success: function(data) {
-
 			var data = eval(data);
-			//console.log(data);
-			renderPie(data);
+			t.renderPie(data);
 		}
 	});
 
 
-function renderPie(data) {
+App.prototype.renderPie = function(data) {
+
 
 	var totalValue = 0;
 	for (var i = 0; i < data.length; i++) {
 		totalValue += data[i].value;
 	}
 
-	//console.log(totalValue);
 
 	if (totalValue > 0) {
 	
@@ -291,22 +287,19 @@ function renderPie(data) {
 	}
 
 };
-}
+};
 
-function calcReturns(yearlySavings, percentRet, years) {
+App.prototype.calcReturns = function(yearlySavings, percentRet, years) {
 	var val = 0;
 	for (var i = 0; i < years; i++) {
 		val += yearlySavings;
 		val = val * (1 + percentRet);
 	}
 	return Math.round(val);
-}
+};
 
-$('.asset').change(function() {
-	updateEstimate();
-});
-
-function updateEstimate() {
+App.prototype.updateEstimate = function() {
+	var t = this;
 	var year = eval($('input[name=year]').val());
 	var pstock = $('input[name=pstock]').val()/100;
 	var pbond = $('input[name=pbond]').val()/100;
@@ -317,36 +310,34 @@ function updateEstimate() {
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
 
 	var remainingYears = 2015 - year;
-	var estimate = calcReturns(amount,portRet,remainingYears);
+	var estimate = t.calcReturns(amount,portRet,remainingYears);
 	var sum = ($('#sum').text() * 1)
-	//console.log(sum);
-
-	//console.log(estimate);
 
 	var actualEst = estimate + sum;
-	$('#estimate').text('$'+numberWithCommas(actualEst));
+	$('#estimate').text('$'+t.numberWithCommas(actualEst));
 
-	updateCases();
+	t.updateCases();
 
-}
+};
 
-function calcFV(save, percentRet, years) {
+App.prototype.calcFV = function(save, percentRet, years) {
 	var val = save;
 	for (var i = 0; i < years; i++) {
 		val += val * percentRet;
 	}
 	return Math.round(val);
-}
+};
 
-function numberWithCommas(x) {
+App.prototype.numberWithCommas = function(x) {
     x = x.toString();
     var pattern = /(-?\d+)(\d{3})/;
     while (pattern.test(x))
         x = x.replace(pattern, "$1,$2");
     return x;
-}
+};
 
-function updateCases() {
+App.prototype.updateCases = function() {
+	var t = this;
 	var pstock = $('input[name=pstock]').val()/100;
 	var pbond = $('input[name=pbond]').val()/100;
 	var pcash = $('input[name=pcash]').val()/100;
@@ -359,26 +350,23 @@ function updateCases() {
 	var year = $('input[name=year]').val();
 	var remainingYears = 2015 - year;
 
-	var estLow = Math.round(calcFV(amount,portRet-portVol, remainingYears));
-	var estLikely = calcFV(amount,portRet,remainingYears);
-	var estHigh = Math.round(calcFV(amount,portRet+portRet, remainingYears));
+	var estLow = Math.round(t.calcFV(amount,portRet-portVol, remainingYears));
+	var estLikely = t.calcFV(amount,portRet,remainingYears);
+	var estHigh = Math.round(t.calcFV(amount,portRet+portRet, remainingYears));
 
-	//console.log(portVol);
+	$('#savedToday').text('$'+t.numberWithCommas(amount));
+	$('#worstCase').text('$'+t.numberWithCommas(estLow));
+	$('#likelyCase').text('$'+t.numberWithCommas(estLikely));
+	$('#bestCase').text('$'+t.numberWithCommas(estHigh));
+};
 
-
-	$('#savedToday').text('$'+numberWithCommas(amount));
-	$('#worstCase').text('$'+numberWithCommas(estLow));
-	$('#likelyCase').text('$'+numberWithCommas(estLikely));
-	$('#bestCase').text('$'+numberWithCommas(estHigh));
-}
-
-function checkDateCount(callback) {
+App.prototype.checkDateCount = function(callback) {
 	$.ajax({
 		type: "GET",
 		url: "date_count.php",
 		success: function(data) {
 			var count = Math.round(data*1);
-			if (count > 5) {
+			if (count > 500) {
 				$('#pageData').hide();
 				$('#pageMsg').show();
 			} else {
@@ -387,59 +375,63 @@ function checkDateCount(callback) {
 			}
 		}
 	});
-}
+};
 
-function init() {
-	checkDateCount();
-	renderBalanceChart();
-	renderHistChart();
-	updateCases();
-	getSum();
-}
-
-
-//$('#submitBtn').attr('disabled', 'disabled');
-
-$('#yearForm').submit(function(e) {
-
-	$('#submitBtn').attr('disabled', 'disabled');
-
-	var year = $('input[name=year]').val();
-
-	if (year < 2015) {
-		var pstock = $('input[name=pstock]').val()/100;
-		var pbond = $('input[name=pbond]').val()/100;
-		var pcash = $('input[name=pcash]').val()/100;
-
-		console.log(pstock, pbond, pcash);
-
-		var totalPercent =  pstock + pbond + pcash;
-
-		if (pstock + pbond + pcash != 1) {
-			alert('Stock + bond + cash percents must add up to 100%.');
-		} else {
-
-			portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
-
-
-			var serialized = $('#yearForm').serialize();
-			$.get('save_month.php?' + serialized).done(function() {
-				getSum();
-			});
-
-		}
-	}
-	checkDateCount();
-	e.preventDefault();
-});
-$('#clearDBBtn').on('click', function() {
-	$.get('clear.php').done(function() {
-		getSum();
-		$('input[name=year]').val(1980);
+App.prototype.addEvents = function() {
+	var t = this;
+	$('.asset').change(function() {
+		t.updateEstimate();
 	});
-	alert('DB cleared');
-});
 
-init();
+	$('#yearForm').submit(function(e) {
+
+		$('#submitBtn').attr('disabled', 'disabled');
+
+		var year = $('input[name=year]').val();
+
+		if (year < 2015) {
+			var pstock = $('input[name=pstock]').val()/100;
+			var pbond = $('input[name=pbond]').val()/100;
+			var pcash = $('input[name=pcash]').val()/100;
+
+			var totalPercent =  pstock + pbond + pcash;
+
+			if (pstock + pbond + pcash != 1) {
+				alert('Stock + bond + cash percents must add up to 100%.');
+			} else {
+
+				portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
+
+
+				var serialized = $('#yearForm').serialize();
+				$.get('save_month.php?' + serialized).done(function() {
+					t.getSum();
+				});
+
+			}
+		}
+		t.checkDateCount();
+		e.preventDefault();
+	});
+	$('#clearDBBtn').on('click', function() {
+		$.get('clear.php').done(function() {
+			t.getSum();
+			$('input[name=year]').val(1980);
+		});
+		alert('DB cleared');
+	});
+};
+
+App.prototype.init = function() {
+	var t = this;
+	t.addEvents();
+	t.checkDateCount();
+	t.renderBalanceChart();
+	t.renderHistChart();
+	t.updateCases();
+	t.getSum();
+};
+
 
 var app = new App();
+app.init();
