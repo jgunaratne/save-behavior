@@ -23,8 +23,8 @@ function readCSV($csvFile){
 	return $line_hash;
 }
 
-$csvfile_djia = 'data/djia.csv';
-$csvfile_fbndx = 'data/fbndx.csv';
+$csvfile_djia = '../data/djia.csv';
+$csvfile_fbndx = '../data/fbndx.csv';
 
 $djia_hash = readCSV($csvfile_djia);
 $fbndx_hash = readCSV($csvfile_fbndx);

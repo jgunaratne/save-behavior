@@ -20,7 +20,7 @@ App.prototype.getSum = function() {
 	var t = this;
 	$.ajax({
 		type: "GET",
-		url: "sum.php",
+		url: "php/sum.php",
 		data: { 
 			uid: $('input[name=uid]').val(),
 			mturkworkerid: $('input[name=mturkworkerid]').val()
@@ -86,7 +86,7 @@ App.prototype.renderHistChart = function() {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.csv("history.php?mturkworkerid=AZ3456EXAMPLE", function(error, data) {
+	d3.csv("php/history.php?mturkworkerid=AZ3456EXAMPLE", function(error, data) {
 
 	  if (data.length > 0) {
 
@@ -172,7 +172,7 @@ var color = d3.scale.ordinal()
 
 $.ajax({
 		type: "GET",
-		url: "balance.php",
+		url: "php/balance.php",
 		data: { 
 			uid: $('input[name=uid]').val(),
 			mturkworkerid: $('input[name=mturkworkerid]').val()
@@ -363,7 +363,7 @@ App.prototype.updateCases = function() {
 App.prototype.checkDateCount = function(callback) {
 	$.ajax({
 		type: "GET",
-		url: "date_count.php",
+		url: "php/date_count.php",
 		success: function(data) {
 			var count = Math.round(data*1);
 			if (count > 500) {
@@ -404,7 +404,7 @@ App.prototype.addEvents = function() {
 
 
 				var serialized = $('#yearForm').serialize();
-				$.get('save_month.php?' + serialized).done(function() {
+				$.get('php/save_month.php?' + serialized).done(function() {
 					t.getSum();
 				});
 
@@ -414,7 +414,7 @@ App.prototype.addEvents = function() {
 		e.preventDefault();
 	});
 	$('#clearDBBtn').on('click', function() {
-		$.get('clear.php').done(function() {
+		$.get('php/clear.php').done(function() {
 			t.getSum();
 			$('input[name=year]').val(1980);
 		});
