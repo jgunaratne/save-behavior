@@ -17,39 +17,7 @@ var currYear = 1980;
 var currMonth = 1;
 
 
-$('#yearForm').submit(function(e) {
 
-	$('#submitBtn').attr('disabled', 'disabled');
-
-	var year = $('input[name=year]').val();
-
-	if (year < 2015) {
-		var pstock = $('input[name=pstock]').val()/100;
-		var pbond = $('input[name=pbond]').val()/100;
-		var pcash = $('input[name=pcash]').val()/100;
-
-		console.log(pstock, pbond, pcash);
-
-		var totalPercent =  pstock + pbond + pcash;
-		console.log(totalPercent);
-
-		if (pstock + pbond + pcash != 1) {
-			alert('Stock + bond + cash percents must add up to 100%.');
-		} else {
-
-			portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
-
-
-			var serialized = $('#yearForm').serialize();
-			$.get('save_month.php?' + serialized).done(function() {
-				getSum();
-			});
-
-		}
-	}
-	checkDateCount();
-	e.preventDefault();
-});
 
 
 
@@ -87,15 +55,6 @@ function getSum() {
 	});
 }
 
-//$('#submitBtn').attr('disabled', 'disabled');
-
-$('#clearDBBtn').on('click', function() {
-	$.get('clear.php').done(function() {
-		getSum();
-		$('input[name=year]').val(1980);
-	});
-	alert('DB cleared');
-});
 
 function renderHistChart() {
 	$("#histChart").html('');
@@ -413,7 +372,7 @@ function updateCases() {
 	$('#bestCase').text('$'+numberWithCommas(estHigh));
 }
 
-function checkDateCount() {
+function checkDateCount(callback) {
 	$.ajax({
 		type: "GET",
 		url: "date_count.php",
@@ -437,6 +396,49 @@ function init() {
 	updateCases();
 	getSum();
 }
+
+
+//$('#submitBtn').attr('disabled', 'disabled');
+
+$('#yearForm').submit(function(e) {
+
+	$('#submitBtn').attr('disabled', 'disabled');
+
+	var year = $('input[name=year]').val();
+
+	if (year < 2015) {
+		var pstock = $('input[name=pstock]').val()/100;
+		var pbond = $('input[name=pbond]').val()/100;
+		var pcash = $('input[name=pcash]').val()/100;
+
+		console.log(pstock, pbond, pcash);
+
+		var totalPercent =  pstock + pbond + pcash;
+
+		if (pstock + pbond + pcash != 1) {
+			alert('Stock + bond + cash percents must add up to 100%.');
+		} else {
+
+			portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
+
+
+			var serialized = $('#yearForm').serialize();
+			$.get('save_month.php?' + serialized).done(function() {
+				getSum();
+			});
+
+		}
+	}
+	checkDateCount();
+	e.preventDefault();
+});
+$('#clearDBBtn').on('click', function() {
+	$.get('clear.php').done(function() {
+		getSum();
+		$('input[name=year]').val(1980);
+	});
+	alert('DB cleared');
+});
 
 init();
 

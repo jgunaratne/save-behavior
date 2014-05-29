@@ -3,6 +3,8 @@
 $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
 mysql_select_db("retire") or die(mysql_error());
 
+date_default_timezone_set("America/New_York");
+
 $today = date("Y-m-d");
 $query_sum = "SELECT modified FROM `activity` WHERE modified > '$today';";
 $result_sum = mysql_query($query_sum) or die('Query failed: ' . mysql_error());

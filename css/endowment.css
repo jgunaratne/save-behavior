@@ -85,7 +85,7 @@ text {
 
 .outcome .future-val {
   font-size: 24px;
-  font-family: cheltenham;
+  font-family: stymie;
   font-weight: normal;
 }
 
@@ -107,7 +107,7 @@ text {
 
 .save {
   font-size: 28px;
-  font-family: cheltenham;
+  font-family: stymie;
 }
 
 h2 {
@@ -117,7 +117,7 @@ h2 {
 
 h1 {
   margin: 0;
-  font-family: cheltenham;
+  font-family: stymie;
 }
 
 .desc {
@@ -144,4 +144,14 @@ input[disabled] {
 .amount {
   width: 160px;
   float: left;
+}
+
+input[type=text] {
+  font-family: stymie;
+  font-size: 24px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 150px;
+  text-align: right;
+  margin-right: 10px;
 }
