@@ -1,6 +1,6 @@
 <?php
 header('Content-type: text/plain');
-//$uid = $_GET["uid"];
+$uid = $_GET["uid"];
 $mturkworkerid = $_GET["mturkworkerid"];
 $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
 mysql_select_db("retire") or die(mysql_error());

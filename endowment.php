@@ -1,3 +1,7 @@
+<?php
+session_start();
+$mturkworkerid = $_SESSION['mturkworkerid'];
+?>
 <html !doctype>
 <head>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -38,7 +42,7 @@
 				<form id="yearForm">
 					<div class="hidden">
 				<label>UID</label><input type="text" value="100" name="uid">
-				<label>MTurkWorkerID</label><input type="text" value="AZ3456EXAMPLE" name="mturkworkerid">
+				<label>MTurkWorkerID</label><input type="text" value="<?php echo $mturkworkerid; ?>" name="mturkworkerid">
 				<label>Month</label><input type="text" value="01" name="month">
 				<label>Year</label><input type="text" value="1980" name="year">
 				<br>
