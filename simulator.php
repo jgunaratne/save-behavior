@@ -100,6 +100,29 @@ $mturkworkerid = $_SESSION['mturkworkerid'];
 			</div>
 		</div>
 	</div>
+	<div class="row">
+			<div class="col-md-12"><hr></div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="num-group">
+					Original amount
+					<div class="endowment-value">$1,100,000</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="num-group">
+					Current amount
+					<div class="endowment-value">$1,100,000</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="num-group">
+					Gain or loss
+					<div class="endowment-value">$1,100,000</div>
+				</div>
+			</div>
+		</div>
 </div>
 <div class="container" id="pageMsg">
 <p>Please return tomorrow to complete the next part of this study.</p>
