@@ -20,7 +20,7 @@ App.prototype.getSum = function() {
 	var t = this;
 	$.ajax({
 		type: "GET",
-		url: "php/sum.php",
+		url: "api/sum.php",
 		data: { 
 			uid: $('input[name=uid]').val(),
 			mturkworkerid: $('input[name=mturkworkerid]').val()
@@ -52,7 +52,7 @@ App.prototype.getSum = function() {
 };
 
 
-App.prototype.renderHistChart = function() {
+App.prototype.renderHistChart = function(callback) {
 	$("#histChart").html('');
 	var margin = {top: 50, right: 50, bottom: 50, left: 50},
     width = 480 - margin.left - margin.right,
@@ -86,7 +86,8 @@ App.prototype.renderHistChart = function() {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.csv("php/history.php?mturkworkerid=AZ3456EXAMPLE", function(error, data) {
+	var mturkworkerid = $('input[name=mturkworkerid]').val();
+	d3.csv("api/history.php?mturkworkerid=" + mturkworkerid, function(error, data) {
 
 	  if (data.length > 0) {
 
@@ -99,6 +100,10 @@ App.prototype.renderHistChart = function() {
 	    	currYear = dYear;
 		}
 	  });
+
+	  if (callback) {
+		callback();
+	  }
 
 	  
 
@@ -128,6 +133,8 @@ App.prototype.renderHistChart = function() {
 	  }
 	      
 	});	
+
+	
 };
 
 App.prototype.renderBalanceChart = function() {
@@ -172,7 +179,7 @@ var color = d3.scale.ordinal()
 
 $.ajax({
 		type: "GET",
-		url: "php/balance.php",
+		url: "api/balance.php",
 		data: { 
 			uid: $('input[name=uid]').val(),
 			mturkworkerid: $('input[name=mturkworkerid]').val()
@@ -363,7 +370,7 @@ App.prototype.updateCases = function() {
 App.prototype.checkDateCount = function(callback) {
 	$.ajax({
 		type: "GET",
-		url: "php/date_count.php",
+		url: "api/date_count.php",
 		success: function(data) {
 			var count = Math.round(data*1);
 			if (count > 500) {
@@ -399,12 +406,9 @@ App.prototype.addEvents = function() {
 			if (pstock + pbond + pcash != 1) {
 				alert('Stock + bond + cash percents must add up to 100%.');
 			} else {
-
 				portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
-
-
 				var serialized = $('#yearForm').serialize();
-				$.get('php/save_month.php?' + serialized).done(function() {
+				$.get('api/save_month.php?' + serialized).done(function() {
 					t.getSum();
 				});
 
@@ -414,7 +418,7 @@ App.prototype.addEvents = function() {
 		e.preventDefault();
 	});
 	$('#clearDBBtn').on('click', function() {
-		$.get('php/clear.php').done(function() {
+		$.get('api/clear.php').done(function() {
 			t.getSum();
 			$('input[name=year]').val(1980);
 		});
@@ -427,7 +431,9 @@ App.prototype.init = function() {
 	t.addEvents();
 	t.checkDateCount();
 	t.renderBalanceChart();
-	t.renderHistChart();
+	t.renderHistChart(function() {
+		$('input[name=year]').val(currYear);
+	});
 	t.updateCases();
 	t.getSum();
 };
