@@ -46,6 +46,9 @@
                   <div class="clear"></div>
                   <label>Yearly amount saved</label><input type="text" value="7500" name="amount2" class="asset" disabled>
                   <input type="hidden" value="7500" name="amount" class="asset" id="inputAmount">
+                  <div class="marg">
+                     <div id="calcMsg" class="red">Percentages must add up to 100%.</div>
+                 </div>
                </div>
                <div class="col-md-6 goals">
                   <div id="histChart"></div>

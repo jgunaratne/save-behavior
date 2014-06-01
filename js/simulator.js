@@ -328,17 +328,25 @@ App.prototype.updateEstimate = function() {
 	var totalPercent =  pstock + pbond + pcash;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
 
-	var remainingYears = 2015 - year;
-	var estimate = t.calcReturns(amount,portRet,remainingYears);
-	var sum = ($('#sum').text() * 1)
+	$('#submitBtn').attr('disabled', null);
+	if (totalPercent != 1) {
+		$('#calcMsg').show();
+		$('#submitBtn').attr('disabled', 'disabled');
+	} else {
+		$('#calcMsg').hide();
 
-	var actualEst = estimate + sum;
-	$('#estimate').text('$'+t.numberWithCommas(actualEst));
+		var remainingYears = 2015 - year;
+		var estimate = t.calcReturns(amount,portRet,remainingYears);
+		var sum = ($('#sum').text() * 1)
 
-	var gainLossVal = actualEst - goal;
+		var actualEst = estimate + sum;
+		$('#estimate').text('$'+t.numberWithCommas(actualEst));
 
-	t.calcEndowmentVals(goal,actualEst,gainLossVal);
-	t.updateCases();
+		var gainLossVal = actualEst - goal;
+
+		t.calcEndowmentVals(goal,actualEst,gainLossVal);
+		t.updateCases();
+	}
 
 };
 
@@ -506,6 +514,7 @@ App.prototype.init = function(completeMsg) {
 
 	$('#balanceChart, #histChart').hide();
 	$('.endowment-effect, .loss-aversion').hide();
+	$('#calcMsg').hide();
 
 	if (t.getGroup(uid) == 2) {
 		$('.endowment-effect').show();
