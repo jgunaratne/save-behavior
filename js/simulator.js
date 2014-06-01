@@ -12,6 +12,7 @@ var portVol = 0;
 var currYear = 1980;
 var currMonth = 1;
 
+var uid = $('input[name=uid').val()*1;
 var goal = $('input[name=goal').val()*1;
 var futureYearNum = 39;
 
@@ -466,6 +467,21 @@ App.prototype.calcEndowmentVals = function(originalValue, currentValue, gainLoss
 
 };
 
+App.prototype.gcf = function gcf(a, b) { 
+	return ( b == 0 ) ? (a):( gcf(b, a % b) ); 
+};
+
+App.prototype.getGroup = function(n) {
+	var t = this;
+	if (t.gcf(n,3) == 3) {
+		return 3;
+	} else if (t.gcf(n,2) == 2) {
+		return 2;
+	} else {
+		return 1;
+	}
+};
+
 App.prototype.init = function(completeMsg) {
 	var t = this;
 	t.addEvents();
@@ -480,6 +496,15 @@ App.prototype.init = function(completeMsg) {
 	$('#goal').text('$' + t.numberWithCommas(goal));
 
 	$('#balanceChart, #histChart').hide();
+	$('.endowment-effect, .loss-aversion').hide();
+
+	if (t.getGroup(uid) == 2) {
+		$('.endowment-effect').show();
+		console.log(uid);
+	} else if (t.getGroup(uid) == 3) {
+		$('.loss-aversion').show();
+	}
+
 
 };
 
