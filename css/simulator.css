@@ -200,3 +200,9 @@ input[type=text].final-goal {
 #completeMsg {
   display: none;
 }
+
+input[disabled] {
+  background: none;
+  opacity: .5;
+  border-bottom: none;
+}

@@ -77,15 +77,15 @@
             <p>Use the calculator below to calculate an estimate of your investment performance.</p>
             <div class="weights">
               <p>Adjust your stock, bond and cash percentages to change risk and reward.</p>
-              <label>Percent stock</label><input type="text" value="40" name="pstock" class="asset">%
+              <label>Percent stock</label><input type="text" value="40" name="pstock" class="asset" id="inputPStock">%
               <div class="clear"></div>
-              <label>Percent bond</label><input type="text" value="40" name="pbond" class="asset">%
+              <label>Percent bond</label><input type="text" value="40" name="pbond" class="asset" id="inputPBond">%
               <div class="clear"></div>
-              <label>Percent cash</label><input type="text" value="20" name="pcash" class="asset">%
+              <label>Percent cash</label><input type="text" value="20" name="pcash" class="asset" id="inputPCash">%
               <div class="clear"></div>
-              <label>Years</label><input type="text" value="34" name="years" class="asset">
+              <label>Years</label><input type="text" value="34" name="years" class="asset" id="inputYears">
               <div class="clear"></div>
-              <label>Yearly amount saved ($)</label><input type="text" value="7500" name="amount" class="asset">
+              <label>Yearly amount saved ($)</label><input type="text" value="7500" name="amount" class="asset" id="inputAmount">
               <div class="clear"></div>
               <div class="marg">
                 <div id="calcMsg" class="red">Percentages must add up to 100%.</div>
@@ -108,7 +108,7 @@
 <hr>
 <h1>Your retirement goal</h1>
           <p>Enter your retirement savings goal for this retirement simulation. Please think about this amount carefully as this dollar amount will be used as your target goal during the simulation:</p>
-          $<input type="text" value="0" name="goal" class="final-goal">
+          $<input type="text" value="0" name="goal" class="final-goal" id="inputGoal">
 
               <div class="marg">
                 <a class="btn btn-lg btn-primary" href="#" role="button" id="showTurkCopyBtn">Continue</a>

@@ -40,13 +40,13 @@ App.prototype.numberWithCommas = function(x) {
 
 App.prototype.calcEstOutcome = function() {
 	var t = this;
-	var year = eval($('input[name=year]').val());
-	var pstock = $('input[name=pstock]').val()/100;
-	var pbond = $('input[name=pbond]').val()/100;
-	var pcash = $('input[name=pcash]').val()/100;
-	var amount = $('input[name=amount]').val()*1;
 
-	var remainingYears = $('input[name=years]').val()*1;;
+	var pstock = $('#inputPStock').val()/100;
+	var pbond = $('#inputPBond').val()/100;
+	var pcash = $('#inputPCash').val()/100;
+	var amount = $('#inputAmount').val()*1;
+
+	var remainingYears = $('#inputYears').val()*1;;
 	var actualEst = estimate;
 	var totalPercent =  pstock + pbond + pcash;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
@@ -68,7 +68,7 @@ App.prototype.calcEstOutcome = function() {
 		$('#estimate').text('$'+t.numberWithCommas(estLikely));
 		$('#estimateHigh').text('$'+t.numberWithCommas(estHigh));
 
-		$('input[name=goal').val(estLikely);
+		$('#inputGoal').val(estLikely);
 	}
 
 	
@@ -90,6 +90,11 @@ App.prototype.addEvents = function() {
 		$('.study-copy').hide();
 		$('.mturk-copy').show();
 	});
+
+	$('#inputGoal').blur(function() {
+		var nval = $('#inputGoal').val().replace(/\D/g,'');
+		$('#inputGoal').val(nval);
+	})
 };
 
 App.prototype.calcTurkReward  = function() {

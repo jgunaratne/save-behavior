@@ -19,8 +19,8 @@
    </head>
    <body>
       <form id="yearForm">
-         <input type="hidden" name="goal" value="<?php echo $goal;?>">
-         <input type="hidden" name="usercode" value="<?php echo $usercode; ?>">
+         <input type="hidden" name="goal" value="<?php echo $goal;?>" id="inputGoal">
+         <input type="hidden" name="usercode" value="<?php echo $usercode; ?>" id="inputUsercode">
          <div class="container" id="pageData">
             <div class="row">
                <div class="col-md-12">
@@ -31,20 +31,21 @@
                <div class="col-md-6 weights">
                   <div id="balanceChart"></div>
                   <div class="hidden">
-                     <label>UID</label><input type="text" value="<?php echo $uid; ?>" name="uid">
-                     <label>MTurkWorkerID</label><input type="text" value="<?php echo $mturkworkerid; ?>" name="mturkworkerid">
+                     <label>UID</label><input type="text" value="<?php echo $uid; ?>" name="uid" id="inputUID">
+                     <label>MTurkWorkerID</label><input type="text" value="<?php echo $mturkworkerid; ?>" name="mturkworkerid" id="inputMturkworkerid">
                      <label>Month</label><input type="text" value="01" name="month">
-                     <label>Year</label><input type="text" value="1980" name="year">
+                     <label>Year</label><input type="text" value="1980" name="year" id="inputYear">
                      <br>
                   </div>
                   <p>Adjust your stock, bond and cash percentages to change risk and reward.</p>
-                  <label>Percent stock</label><input type="text" value="40" name="pstock" class="asset">%
+                  <label>Percent stock</label><input type="text" value="40" name="pstock" class="asset" id="inputPStock">%
                   <div class="clear"></div>
-                  <label>Percent bond</label><input type="text" value="40" name="pbond" class="asset">%
+                  <label>Percent bond</label><input type="text" value="40" name="pbond" class="asset" id="inputPBond">%
                   <div class="clear"></div>
-                  <label>Percent cash</label><input type="text" value="20" name="pcash" class="asset">%
+                  <label>Percent cash</label><input type="text" value="20" name="pcash" class="asset" id="inputPCash">%
                   <div class="clear"></div>
-                  <label>Yearly amount saved</label><input type="text" value="7500" name="amount" class="asset">
+                  <label>Yearly amount saved</label><input type="text" value="7500" name="amount2" class="asset" disabled>
+                  <input type="hidden" value="7500" name="amount" class="asset" id="inputAmount">
                </div>
                <div class="col-md-6 goals">
                   <div id="histChart"></div>
@@ -102,7 +103,7 @@
             <div class="row endowment-effect">
                <div class="col-md-4">
                   <div class="num-group">
-                     Original lump sum award
+                     Original amount
                      <div class="endowment-value" id="originalValue">$1,100,000</div>
                   </div>
                </div>

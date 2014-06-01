@@ -12,8 +12,8 @@ var portVol = 0;
 var currYear = 1980;
 var currMonth = 1;
 
-var uid = $('input[name=uid').val()*1;
-var goal = $('input[name=goal').val()*1;
+var uid = $('#inputUID').val()*1;
+var goal = $('#inputGoal').val()*1;
 var futureYearNum = 39;
 
 var App = function() {
@@ -26,8 +26,8 @@ App.prototype.getSum = function() {
 		type: "GET",
 		url: "api/sum.php",
 		data: { 
-			uid: $('input[name=uid]').val(),
-			mturkworkerid: $('input[name=mturkworkerid]').val()
+			uid: $('#inputUID').val(),
+			mturkworkerid: $('#inputMturkworkerid').val()
 		},
 		success: function(data) {
 			var sum = Math.round(data*1);
@@ -36,12 +36,12 @@ App.prototype.getSum = function() {
 
 			
 
-			var year = eval($('input[name=year]').val());
+			var year = eval($('#inputYear').val());
 			var futureYear = year + 0;
 			$('#year').text(futureYear);
 
 			year++;
-			$('input[name=year]').val(year);
+			$('#inputYear').val(year);
 
 			//$('input[name=year]').val(currYear);
 			var simYear = year + futureYearNum;
@@ -92,7 +92,7 @@ App.prototype.renderHistChart = function(callback) {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	var mturkworkerid = $('input[name=mturkworkerid]').val();
+	var mturkworkerid = $('#inputMturkworkerid').val();
 	d3.csv("api/history.php?mturkworkerid=" + mturkworkerid, function(error, data) {
 
 	  if (data.length > 0) {
@@ -190,8 +190,8 @@ $.ajax({
 		type: "GET",
 		url: "api/balance.php",
 		data: { 
-			uid: $('input[name=uid]').val(),
-			mturkworkerid: $('input[name=mturkworkerid]').val()
+			uid: $('#inputUID').val(),
+			mturkworkerid: $('#inputMturkworkerid').val()
 		},
 		success: function(data) {
 			var data = eval(data);
@@ -319,11 +319,11 @@ App.prototype.calcReturns = function(yearlySavings, percentRet, years) {
 
 App.prototype.updateEstimate = function() {
 	var t = this;
-	var year = eval($('input[name=year]').val());
-	var pstock = $('input[name=pstock]').val()/100;
-	var pbond = $('input[name=pbond]').val()/100;
-	var pcash = $('input[name=pcash]').val()/100;
-	var amount = $('input[name=amount]').val()*1;
+	var year = eval($('#inputYear').val());
+	var pstock = $('#inputPStock').val()/100;
+	var pbond = $('#inputPBond').val()/100;
+	var pcash = $('#inputPCash').val()/100;
+	var amount = $('#inputAmount').val()*1;
 
 	var totalPercent =  pstock + pbond + pcash;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
@@ -336,6 +336,7 @@ App.prototype.updateEstimate = function() {
 	$('#estimate').text('$'+t.numberWithCommas(actualEst));
 
 	var gainLossVal = actualEst - goal;
+
 	t.calcEndowmentVals(goal,actualEst,gainLossVal);
 	t.updateCases();
 
@@ -359,16 +360,16 @@ App.prototype.numberWithCommas = function(x) {
 
 App.prototype.updateCases = function() {
 	var t = this;
-	var pstock = $('input[name=pstock]').val()/100;
-	var pbond = $('input[name=pbond]').val()/100;
-	var pcash = $('input[name=pcash]').val()/100;
-	var amount = $('input[name=amount]').val()*1;
+	var pstock = $('#inputPStock').val()/100;
+	var pbond = $('#inputPBond').val()/100;
+	var pcash = $('#inputPCash').val()/100;
+	var amount = $('#inputAmount').val()*1;
 
 	var totalPercent =  pstock + pbond + pcash;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
 	portVol = stockVol*pstock + bondVol*pbond + cashVol*pcash;
 
-	var year = $('input[name=year]').val();
+	var year = $('#inputYear').val();
 	var remainingYears = 2015 - year;
 
 	var estLow = Math.round(t.calcFV(amount,portRet-portVol, remainingYears));
@@ -404,18 +405,24 @@ App.prototype.addEvents = function() {
 		t.updateEstimate();
 	});
 
+	$('#inputPStock, #inputPBond, #inputPCash').blur(function() {
+		var nval = $(this).val().replace(/\D/g,'');
+		$(this).val(nval);
+	})
+
 	$('#yearForm').submit(function(e) {
 
 		$('#submitBtn').attr('disabled', 'disabled');
 
-		var year = $('input[name=year]').val();
+		var year = $('#inputYear').val();
 
 		if (year < 2015) {
-			var pstock = $('input[name=pstock]').val()/100;
-			var pbond = $('input[name=pbond]').val()/100;
-			var pcash = $('input[name=pcash]').val()/100;
+			var pstock = $('#inputPStock').val()/100;
+			var pbond = $('#inputPBond').val()/100;
+			var pcash = $('#inputPCash').val()/100;
 
 			var totalPercent =  pstock + pbond + pcash;
+
 
 			if (pstock + pbond + pcash != 1) {
 				alert('Stock + bond + cash percents must add up to 100%.');
@@ -445,7 +452,7 @@ App.prototype.clearDB = function() {
 	var t = this;
 	$.get('api/clear.php').done(function() {
 		t.getSum();
-		$('input[name=year]').val(1980);
+		$('#inputYear').val(1980);
 	});
 	$('#balanceChart, #histChart').hide();
 	alert('DB cleared');
@@ -473,13 +480,15 @@ App.prototype.gcf = function gcf(a, b) {
 
 App.prototype.getGroup = function(n) {
 	var t = this;
+	var g = 1;
 	if (t.gcf(n,3) == 3) {
-		return 3;
+		g = 3;
 	} else if (t.gcf(n,2) == 2) {
-		return 2;
+		g = 2;
 	} else {
-		return 1;
+		g = 1;
 	}
+	return g;
 };
 
 App.prototype.init = function(completeMsg) {
@@ -488,7 +497,7 @@ App.prototype.init = function(completeMsg) {
 	t.checkDateCount();
 	t.renderBalanceChart();
 	t.renderHistChart(function() {
-		$('input[name=year]').val(currYear);
+		$('#inputYear').val(currYear);
 	});
 	t.updateCases();
 	t.getSum();
@@ -500,7 +509,6 @@ App.prototype.init = function(completeMsg) {
 
 	if (t.getGroup(uid) == 2) {
 		$('.endowment-effect').show();
-		console.log(uid);
 	} else if (t.getGroup(uid) == 3) {
 		$('.loss-aversion').show();
 	}
