@@ -107,7 +107,8 @@
 
 <hr>
 <h1>Your retirement goal</h1>
-          <p>Enter your retirement savings goal for this retirement simulation. Please think about this amount carefully as this dollar amount will be used as your target goal during the simulation:</p>
+          <p>Enter your retirement savings goal for this retirement simulation. Please think about this amount carefully as this dollar amount will be used as your target goal during the simulation.</p>
+	  <p>Set this goal as close to your final expected amount as possible. Setting this too low or too high will lead to a negative outcome.</p>
           $<input type="text" value="0" name="goal" class="final-goal" id="inputGoal">
 
               <div class="marg">
@@ -118,7 +119,7 @@
 
           <div class="mturk-copy">
             <h1>Earning your Mechnical Turk reward</h1>
-            <p>At the end of the 30 year simulation you will be shown the final amount of your investment.</p>
+            <p>At the end of the 34 year simulation you will be shown the final amount of your investment.</p>
             <p>Stock and bond performance in this retirement simulation is randomly generated, but has the same return and volatility attributes you saw in the investment characteristics table.</p>
             <p>The closer your estimate is to the final amount the greater your Mechanical Turk reward. These are the rewards you may receive from Mechanical Turk for completing this study:</p>
             <h2>Mechanical Turk reward amounts</h2>
