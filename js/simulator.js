@@ -12,6 +12,9 @@ var portVol = 0;
 var currYear = 1980;
 var currMonth = 1;
 
+var goal = $('input[name=goal').val()*1;
+var futureYearNum = 39;
+
 var App = function() {
 
 };
@@ -30,6 +33,8 @@ App.prototype.getSum = function() {
 			$('#sum').text(sum);
 			$('#displaySum').text('$'+t.numberWithCommas(sum));
 
+			
+
 			var year = eval($('input[name=year]').val());
 			var futureYear = year + 0;
 			$('#year').text(futureYear);
@@ -38,7 +43,7 @@ App.prototype.getSum = function() {
 			$('input[name=year]').val(year);
 
 			//$('input[name=year]').val(currYear);
-			var simYear = year + 40;
+			var simYear = year + futureYearNum;
 	  		$('#year').text(simYear);
 			
 			t.renderHistChart();
@@ -105,9 +110,12 @@ App.prototype.renderHistChart = function(callback) {
 		callback();
 	  }
 
-	  
-
-	  x.domain(d3.extent(data, function(d) { return d.date; }));
+	  x.domain(d3.extent(data, function(d) { 
+	  	var nDate = d.date;
+	  	var nYear = nDate.getFullYear() + futureYearNum;
+	  	nDate.setYear(nYear);
+	  	return nDate; 
+	  }));
 	  y.domain(d3.extent(data, function(d) { return d.close; }));
 
 	  svg.append("g")
@@ -186,6 +194,7 @@ $.ajax({
 		},
 		success: function(data) {
 			var data = eval(data);
+
 			t.renderPie(data);
 		}
 	});
@@ -201,7 +210,7 @@ App.prototype.renderPie = function(data) {
 
 
 	if (totalValue > 0) {
-	
+		$('#balanceChart, #histChart').show();
 
 	/* ------- PIE SLICES -------*/
 	var slice = svg.select(".slices").selectAll("path.slice")
@@ -293,6 +302,8 @@ App.prototype.renderPie = function(data) {
 
 	}
 
+
+
 };
 };
 
@@ -323,6 +334,8 @@ App.prototype.updateEstimate = function() {
 	var actualEst = estimate + sum;
 	$('#estimate').text('$'+t.numberWithCommas(actualEst));
 
+	var gainLossVal = actualEst - goal;
+	t.calcEndowmentVals(goal,actualEst,gainLossVal);
 	t.updateCases();
 
 };
@@ -413,20 +426,47 @@ App.prototype.addEvents = function() {
 				});
 
 			}
+		} else {
+			
+			setTimeout(function() {
+				$('#completeMsg').show();
+				$('#pageData, #pageMsg').hide();
+			}, 500);
+			
 		}
+		window.scrollTo(0, 0);
 		t.checkDateCount();
 		e.preventDefault();
 	});
-	$('#clearDBBtn').on('click', function() {
-		$.get('api/clear.php').done(function() {
-			t.getSum();
-			$('input[name=year]').val(1980);
-		});
-		alert('DB cleared');
-	});
 };
 
-App.prototype.init = function() {
+App.prototype.clearDB = function() {
+	var t = this;
+	$.get('api/clear.php').done(function() {
+		t.getSum();
+		$('input[name=year]').val(1980);
+	});
+	$('#balanceChart, #histChart').hide();
+	alert('DB cleared');
+};
+
+App.prototype.calcEndowmentVals = function(originalValue, currentValue, gainLossValue) {
+	var t = this;
+	$('#originalValue').html('$' + t.numberWithCommas(originalValue));
+	$('#currentValue').html('$' + t.numberWithCommas(currentValue));
+	$('#gainLossValue').html('$' + t.numberWithCommas(gainLossValue));
+
+	$('#gainLossValue').removeClass('red').removeClass('green');
+
+	if (gainLossValue < 0) {
+		$('#gainLossValue').addClass('red');
+	} else if (gainLossValue > 0) {
+		$('#gainLossValue').addClass('green');
+	}
+
+};
+
+App.prototype.init = function(completeMsg) {
 	var t = this;
 	t.addEvents();
 	t.checkDateCount();
@@ -436,6 +476,11 @@ App.prototype.init = function() {
 	});
 	t.updateCases();
 	t.getSum();
+
+	$('#goal').text('$' + t.numberWithCommas(goal));
+
+	$('#balanceChart, #histChart').hide();
+
 };
 
 

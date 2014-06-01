@@ -1,5 +1,6 @@
 body {
   font-family: franklin;
+  font-size: 14px;
 }
 
 .axis path,
@@ -106,18 +107,24 @@ text {
 }
 
 .save {
-  font-size: 28px;
+  font-size: 36px;
   font-family: stymie;
 }
 
 h2 {
-  margin: 0;
-  font-family: cheltenham;
+  font-family: stymie;
+  font-size: 24px;
+  margin: 20px 0;
 }
 
 h1 {
-  margin: 0;
   font-family: stymie;
+  font-size: 36px;
+  margin: 20px 0;
+}
+
+.no-marg {
+  margin: 0;
 }
 
 .desc {
@@ -142,7 +149,7 @@ input[disabled] {
 }
 
 .amount {
-  width: 160px;
+  width: 200px;
   float: left;
 }
 
@@ -159,4 +166,37 @@ input[type=text] {
 .endowment-value {
   font-family: stymie;
   font-size: 36px;
+}
+
+#pageData {
+  margin-bottom: 40px;
+}
+
+.num-group {
+  text-align: center;
+}
+
+.marg {
+  margin: 20px 0;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+hr {
+  margin: 30px 0;
+}
+
+input[type=text].final-goal {
+  font-size: 48px;
+  width: 320px;
+}
+
+#completeMsg {
+  display: none;
 }

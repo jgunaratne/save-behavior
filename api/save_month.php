@@ -10,13 +10,20 @@ $amount = $_GET["amount"];
 $pbond = $_GET["pbond"]/100;
 $pstock = $_GET["pstock"]/100;
 $pcash = $_GET["pcash"]/100;
+$goal = $_GET["goal"];
+$usercode = $_GET["usercode"];
 
-function readCSV($csvFile){
+
+function readCSV($csvFile, $type){
 	$line_hash = array();
 	$file_handle = fopen($csvFile, 'r');
 	while (!feof($file_handle) ) {
 		$line_array = fgetcsv($file_handle, 1024);
 		$line_key = substr($line_array[0],0,-3);
+		if ($type == 'stock') {
+			// Add more volatility to stock performance
+			$line_array[4] = $line_array[4] * (1 + (rand(-10,10)/100));
+		}
 		$line_hash[$line_key] = $line_array;
 	}
 	fclose($file_handle);
@@ -26,8 +33,8 @@ function readCSV($csvFile){
 $csvfile_djia = '../data/djia.csv';
 $csvfile_fbndx = '../data/fbndx.csv';
 
-$djia_hash = readCSV($csvfile_djia);
-$fbndx_hash = readCSV($csvfile_fbndx);
+$djia_hash = readCSV($csvfile_djia, 'stock');
+$fbndx_hash = readCSV($csvfile_fbndx, 'bond');
 
 $date_str = "$year-$month";
 $djia_price = $djia_hash[$date_str][4];
@@ -61,15 +68,15 @@ echo "<br>";
 echo "$stock_share_price, $bond_share_price, $stock_shares_bought, $bond_shares_bought";
 echo "<br>";
 echo "$uid,$month,$year,$pstock,$pbond,$djia_price,$fbndx_price,$amount,$mturkworkerid";
+echo "<br>";
+echo "$stock_share_price,$bond_share_price";
 
-$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue, now(), '$mturkworkerid');";
+$query = "INSERT INTO activity VALUES ($uid, $month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue, now(), '$mturkworkerid', $pstock, $pbond, $pcash, $goal, '$usercode');";
 
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
 $stocksum = 0;
 $bondsum = 0;
 $cashsum = 0;
-
-
 
 ?>
