@@ -9,7 +9,6 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 
 
-$uid = $_GET["uid"];
 $mturkworkerid = $_GET["mturkworkerid"];
 $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
 mysql_select_db("retire") or die(mysql_error());
