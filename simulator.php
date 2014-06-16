@@ -1,12 +1,17 @@
 <?php
    session_start();
-   $mturkworkerid = $_SESSION['mturkworkerid'];
-   $uid = $_GET['uid'];
-    if ($uid == null) {
+   $usercode = $_SESSION['usercode'];
+   $uid = $_POST['uid'];
+   if ($uid == null) {
       $uid = "0";
   	}
-   $goal = $_GET['goal'];
-   $usercode = uniqid(true);
+   $goal = $_POST['goal'];
+   if ($goal != null) {
+      $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
+      mysql_select_db("retire") or die(mysql_error());
+      $query = "UPDATE user SET goal = $goal WHERE usercode = '$usercode';";
+      $result = mysql_query($query) or die('Query failed: ' . mysql_error());
+   }
    ?>
 <html !doctype>
    <head>
@@ -18,6 +23,7 @@
       <title>Retirement investment simulator</title>
    </head>
    <body>
+      <?php if ($usercode != null) { ?>
       <form id="yearForm">
          <input type="hidden" name="goal" value="<?php echo $goal;?>" id="inputGoal">
          <input type="hidden" name="usercode" value="<?php echo $usercode; ?>" id="inputUsercode">
@@ -31,8 +37,6 @@
                <div class="col-md-6 weights">
                   <div id="balanceChart"></div>
                   <div class="hidden">
-                     <label>UID</label><input type="text" value="<?php echo $uid; ?>" name="uid" id="inputUID">
-                     <label>MTurkWorkerID</label><input type="text" value="<?php echo $mturkworkerid; ?>" name="mturkworkerid" id="inputMturkworkerid">
                      <label>Month</label><input type="text" value="01" name="month">
                      <label>Year</label><input type="text" value="1980" name="year" id="inputYear">
                      <br>
@@ -146,5 +150,6 @@
          <h2>Your code is: <?php echo $usercode; ?></h2>
       </div>
       <script src="js/simulator.js"></script>
+      <?php } ?>
    </body>
 </html>

@@ -10,14 +10,13 @@ header("Pragma: no-cache");
 //ini_set('display_errors', 1);
 header('Content-type: text/plain');
 
-$uid = $_GET["uid"];
-$mturkworkerid = $_GET["mturkworkerid"];
+$usercode = $_GET["usercode"];
 $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
 mysql_select_db("retire") or die(mysql_error());
-$query = "select sum(stock), sum(bond), sum(cash) from activity where mturkworkerid = '$mturkworkerid';";
+$query = "select sum(stock), sum(bond), sum(cash) from activity where usercode = '$usercode';";
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
-$query2 = "select year, stockprice, bondprice from activity where mturkworkerid = '$mturkworkerid' order by year desc limit 1;";
+$query2 = "select year, stockprice, bondprice from activity where usercode = '$usercode' order by year desc limit 1;";
 $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
 $stocksum = 0;

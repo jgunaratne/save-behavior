@@ -26,8 +26,7 @@ App.prototype.getSum = function() {
 		type: "GET",
 		url: "api/sum.php",
 		data: { 
-			uid: $('#inputUID').val(),
-			mturkworkerid: $('#inputMturkworkerid').val()
+			usercode: $('#inputUsercode').val()
 		},
 		success: function(data) {
 			var sum = Math.round(data*1);
@@ -92,8 +91,8 @@ App.prototype.renderHistChart = function(callback) {
 	  .append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	var mturkworkerid = $('#inputMturkworkerid').val();
-	d3.csv("api/history.php?mturkworkerid=" + mturkworkerid, function(error, data) {
+	var usercode = $('#inputUsercode').val()
+	d3.csv("api/history.php?usercode=" + usercode, function(error, data) {
 
 	  if (data.length > 0) {
 
@@ -190,8 +189,7 @@ $.ajax({
 		type: "GET",
 		url: "api/balance.php",
 		data: { 
-			uid: $('#inputUID').val(),
-			mturkworkerid: $('#inputMturkworkerid').val()
+			usercode: $('#inputUsercode').val()
 		},
 		success: function(data) {
 			var data = eval(data);
@@ -486,17 +484,25 @@ App.prototype.gcf = function gcf(a, b) {
 	return ( b == 0 ) ? (a):( gcf(b, a % b) ); 
 };
 
-App.prototype.getGroup = function(n) {
-	var t = this;
-	var g = 1;
-	if (t.gcf(n,3) == 3) {
-		g = 3;
-	} else if (t.gcf(n,2) == 2) {
-		g = 2;
-	} else {
-		g = 1;
-	}
-	return g;
+App.prototype.getUser = function() {
+	$.ajax({
+		type: "GET",
+		url: "api/user.php",
+		data: { 
+			usercode: $('#inputUsercode').val()
+		},
+		success: function(data) {
+			var user = data.split(',');
+			groupid = user[1]*1;
+			$('#inputGoal').val(user[3]);
+			goal = user[3]*1;
+			if (groupid == 2) {
+			  $('.endowment-effect').show();
+			} else if (groupid == 3) {
+			  $('.loss-aversion').show();
+			}
+		}
+	});
 };
 
 App.prototype.init = function(completeMsg) {
@@ -516,13 +522,7 @@ App.prototype.init = function(completeMsg) {
 	$('.endowment-effect, .loss-aversion').hide();
 	$('#calcMsg').hide();
 
-	if (t.getGroup(uid) == 2) {
-		$('.endowment-effect').show();
-	} else if (t.getGroup(uid) == 3) {
-		$('.loss-aversion').show();
-	}
-
-
+	t.getUser();
 };
 
 

@@ -1,46 +1,55 @@
 <?php
   session_start();
 
-
-  $mturkworkerid = $_GET["mtwid"];
-  if ($mturkworkerid == null) {
-      $mturkworkerid = "AZ3456EXAMPLE";
+  function get_client_ip() {
+      $ipaddress = '';
+      if (getenv('HTTP_CLIENT_IP'))
+      $ipaddress = getenv('HTTP_CLIENT_IP');
+      else if(getenv('HTTP_X_FORWARDED_FOR'))
+      $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+      else if(getenv('HTTP_X_FORWARDED'))
+      $ipaddress = getenv('HTTP_X_FORWARDED');
+      else if(getenv('HTTP_FORWARDED_FOR'))
+      $ipaddress = getenv('HTTP_FORWARDED_FOR');
+      else if(getenv('HTTP_FORWARDED'))
+         $ipaddress = getenv('HTTP_FORWARDED');
+      else if(getenv('REMOTE_ADDR'))
+      $ipaddress = getenv('REMOTE_ADDR');
+      else
+          $ipaddress = 'UNKNOWN';
+      return $ipaddress;
   }
-  $_SESSION['mturkworkerid']=$mturkworkerid;
 
+  $mtwid = $_GET["mtwid"];
+  $groupid = 1;
+  $usercode = uniqid(true);
+  $ip = get_client_ip();
+  $completed = 0;
+  $goal = 0;
+
+  if ($mtwid == null) {
+    $mtwid = "NONE";
+  }
+  
   $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
   mysql_select_db("retire") or die(mysql_error());
 
-  $query = "SELECT max(uid) FROM activity";
-  $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
-  $uid = 0;
-  while($row = mysql_fetch_array($result)) {
-    $uid = $row[0];
+  $query1 = "select groupid from user;";
+  $result1 = mysql_query($query1) or die('Query failed: ' . mysql_error());
+  while($row = mysql_fetch_array($result1)) {
+    $groupid = $row[0] + 1;
+  }
+  if ($groupid > 3) {
+    $groupid = 1;
   }
 
-  $uid = $uid + 1;
 
-function get_client_ip() {
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP'))
-    $ipaddress = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
-    $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
-    $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
-    $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
-       $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
-    $ipaddress = getenv('REMOTE_ADDR');
-    else
-        $ipaddress = 'UNKNOWN';
-    return $ipaddress;
-}
+  $query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', $completed, $goal);";
+  $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
-$ip = get_client_ip();
+  $_SESSION['mtwid']=$mtwid;
+  $_SESSION['usercode']=$usercode;
 
   ?>
 <html>
@@ -62,7 +71,7 @@ $ip = get_client_ip();
     </style>
   </head>
   <body>
-    <form action="simulator.php">
+    <form action="simulator.php" method="post">
       <div class="container">
       <div class="row">
         <div class="col-md-2"></div>
@@ -181,6 +190,7 @@ $ip = get_client_ip();
       <input type="hidden" name="uid" value="<?php echo $uid; ?>">
       <input type="hidden" name="mturkworkerid" value="<?php echo $mturkworkerid; ?>">
       <input type="hidden" name="ip" value="<?php echo $ip; ?>">
+      <input type="hidden" name="usercode" value="<?php echo $usercode; ?>">
     </form>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
