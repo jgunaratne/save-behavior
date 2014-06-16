@@ -17,7 +17,8 @@ while($row = mysql_fetch_array($result)) {
 	$groupid = $row[1];
 	$completed = $row[4];
 	$goal = $row[5];
+	$year = $row[6];
 }
 
-echo "$mtwid,$groupid,$completed,$goal";
+echo "$mtwid,$groupid,$completed,$goal,$year";
 ?>

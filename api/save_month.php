@@ -74,11 +74,13 @@ echo "<br>";
 echo "$usercode";
 
 $query = "INSERT INTO activity VALUES ($month, $year, $stock_shares_bought, $bond_shares_bought, $cash_saved, $stock_share_price, $bond_share_price, $totalvalue, now(), $pstock, $pbond, $pcash, $goal, '$usercode');";
-
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
 $stocksum = 0;
 $bondsum = 0;
 $cashsum = 0;
+
+$query2 = "UPDATE user SET year = $year WHERE usercode = '$usercode';";
+$result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
 ?>

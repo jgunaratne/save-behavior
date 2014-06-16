@@ -1,10 +1,6 @@
 <?php
    session_start();
    $usercode = $_SESSION['usercode'];
-   $uid = $_POST['uid'];
-   if ($uid == null) {
-      $uid = "0";
-  	}
    $goal = $_POST['goal'];
    if ($goal != null) {
       $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());

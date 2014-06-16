@@ -27,6 +27,7 @@
   $ip = get_client_ip();
   $completed = 0;
   $goal = 0;
+  $year = 1980;
 
   if ($mtwid == null) {
     $mtwid = "NONE";
@@ -34,7 +35,6 @@
   
   $conn = mysql_connect("localhost", "root", "BAgowan13sql") or die(mysql_error());
   mysql_select_db("retire") or die(mysql_error());
-
 
   $query1 = "select groupid from user;";
   $result1 = mysql_query($query1) or die('Query failed: ' . mysql_error());
@@ -45,8 +45,7 @@
     $groupid = 1;
   }
 
-
-  $query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', $completed, $goal);";
+  $query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', $completed, $goal, $year);";
   $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
   $_SESSION['mtwid']=$mtwid;
@@ -188,9 +187,6 @@
         </div>
         <div class="col-md-2"></div>
       </div>
-      <input type="hidden" name="uid" value="<?php echo $uid; ?>">
-      <input type="hidden" name="mturkworkerid" value="<?php echo $mturkworkerid; ?>">
-      <input type="hidden" name="ip" value="<?php echo $ip; ?>">
       <input type="hidden" name="usercode" value="<?php echo $usercode; ?>">
     </form>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>

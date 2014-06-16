@@ -495,6 +495,8 @@ App.prototype.getUser = function() {
 			var user = data.split(',');
 			groupid = user[1]*1;
 			$('#inputGoal').val(user[3]);
+			$('#inputYear').val(user[4]);
+			currYear = user[4] * 1;
 			goal = user[3]*1;
 			if (groupid == 2) {
 			  $('.endowment-effect').show();
