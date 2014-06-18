@@ -49,6 +49,7 @@ App.prototype.calcEstOutcome = function() {
 	var remainingYears = $('#inputYears').val()*1;;
 	var actualEst = estimate;
 	var totalPercent =  pstock + pbond + pcash;
+	totalPercent = Math.round(totalPercent*100)/100;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
 	portVol = (stockVol*pstock + bondVol*pbond + cashVol*pcash);
 	portVol = portVol/(1/portVol);
@@ -86,26 +87,41 @@ App.prototype.addEvents = function() {
 		return false;
 	});
 
-	$('#showTurkCopyBtn').click(function() {
-		$('.study-copy').hide();
-		$('.mturk-copy').show();
-	});
-
 	$('#inputGoal').blur(function() {
 		var nval = $('#inputGoal').val().replace(/\D/g,'');
 		$('#inputGoal').val(nval);
-	})
+	});
+
+	$('#continueBtn').click(function(e) {
+		t.createUser();
+		return false;
+	});
+
 };
 
 App.prototype.calcTurkReward  = function() {
 
 };
 
+App.prototype.createUser = function() {
+	$('#continueBtn').attr('disabled', 'disabled');
+	$.ajax({
+		type: "GET",
+		url: "api/create_user.php",
+		data: { 
+			mtwid: $('#mtwid').val(),
+			goal: $('#inputGoal').val()
+		},
+		success: function(data) {
+			document.location = 'simulator.php?usercode='+data;
+		}
+	});
+};
+
 App.prototype.init = function() {
 	var t = this;
 	t.addEvents();
 	t.calcEstOutcome();
-	$('.mturk-copy').hide();
 };
 
 var app = new App();

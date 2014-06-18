@@ -14,7 +14,7 @@ var currMonth = 1;
 
 var uid = $('#inputUID').val()*1;
 var goal = $('#inputGoal').val()*1;
-var futureYearNum = 39;
+var futureYearNum = 33;
 
 var App = function() {
 
@@ -32,8 +32,6 @@ App.prototype.getSum = function() {
 			var sum = Math.round(data*1);
 			$('#sum').text(sum);
 			$('#displaySum').text('$'+t.numberWithCommas(sum));
-
-			
 
 			var year = eval($('#inputYear').val());
 			var futureYear = year + 0;
@@ -324,6 +322,8 @@ App.prototype.updateEstimate = function() {
 	var amount = $('#inputAmount').val()*1;
 
 	var totalPercent =  pstock + pbond + pcash;
+	totalPercent = Math.round(totalPercent*100)/100;
+
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
 
 	$('#submitBtn').attr('disabled', null);
@@ -372,6 +372,7 @@ App.prototype.updateCases = function() {
 	var amount = $('#inputAmount').val()*1;
 
 	var totalPercent =  pstock + pbond + pcash;
+	totalPercent = Math.round(totalPercent*100)/100;
 	portRet = stockRet*pstock + bondRet*pbond + cashRet*pcash;
 	portVol = stockVol*pstock + bondVol*pbond + cashVol*pcash;
 
@@ -428,7 +429,7 @@ App.prototype.addEvents = function() {
 			var pcash = $('#inputPCash').val()/100;
 
 			var totalPercent =  pstock + pbond + pcash;
-
+			totalPercent = Math.round(totalPercent*100)/100;
 
 			if (pstock + pbond + pcash != 1) {
 				alert('Stock + bond + cash percents must add up to 100%.');
@@ -443,8 +444,7 @@ App.prototype.addEvents = function() {
 		} else {
 			
 			setTimeout(function() {
-				$('#completeMsg').show();
-				$('#pageData, #pageMsg').hide();
+				t.completed();
 			}, 500);
 			
 		}
@@ -507,8 +507,27 @@ App.prototype.getUser = function() {
 	});
 };
 
-App.prototype.init = function(completeMsg) {
+App.prototype.completed = function() {
+	$('#completeMsg').show();
+	$('#pageData, #pageMsg').hide();
+
+	$.ajax({
+		type: "GET",
+		url: "api/completed.php",
+		data: { 
+			usercode: $('#inputUsercode').val()
+		},
+		success: function(data) {
+			var vals = data.split(',');
+			$('#reward').html(vals[0]);
+			console.log(data);
+		}
+	});
+};
+
+App.prototype.init = function() {
 	var t = this;
+	t.getUser();
 	t.addEvents();
 	t.checkDateCount();
 	t.renderBalanceChart();
@@ -524,7 +543,6 @@ App.prototype.init = function(completeMsg) {
 	$('.endowment-effect, .loss-aversion').hide();
 	$('#calcMsg').hide();
 
-	t.getUser();
 };
 
 
