@@ -211,3 +211,11 @@ input[disabled] {
   opacity: .5;
   border-bottom: none;
 }
+
+.info {
+  width: 16px;
+  height: 16px;
+  background-image: url(../img/help-icon.svg);
+  background-size: 16px;
+  display: inline-block;
+}

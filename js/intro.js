@@ -97,6 +97,8 @@ App.prototype.addEvents = function() {
 		return false;
 	});
 
+	$('.info').tooltip();
+
 };
 
 App.prototype.calcTurkReward  = function() {

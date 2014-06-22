@@ -25,6 +25,9 @@ while($row = mysql_fetch_array($res2)) {
 	}
 }
 
+$q3 = "UPDATE user SET reward = $reward WHERE usercode = '$usercode';";
+$res3 = mysql_query($q3) or die('Query failed: ' . mysql_error());
+
 echo "$reward,$goal,$totalvalue";
 
 ?>

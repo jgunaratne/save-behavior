@@ -26,7 +26,7 @@ $groupid = 1;
 $usercode = uniqid(true);
 $ip = get_client_ip();
 $year = 1980;
-$award = 0;
+$reward = null;
 $totalvalue = 0;
 
 if ($mtwid == null) {
@@ -45,7 +45,7 @@ if ($groupid > 3) {
 	$groupid = 1;
 }
 
-$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), $award, $totalvalue);";
+$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue);";
 $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
 echo $usercode;

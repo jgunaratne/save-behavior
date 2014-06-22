@@ -33,7 +33,7 @@
           <div class="study-copy">
             <h1>Retirement investment study</h1>
             <p>Thank you for participating in this retirement saving study conducted by researchers at New York University. This study simulates retirement investing over a 34 year period. This study will take about 20-30 minutes of your time. You will be shown 34 screens where you will be presented with investment choices.</p>
-            <p>For each year simulated in the study you have $7500 to invest. You have three choices of investments (also known as asset types): stocks, bonds and cash. You can choose to allocate your investments in any way you see fit.</p>
+            <p>For each year simulated in the study you have $10,000 to invest. You have three choices of investments (also known as asset types): stocks, bonds and cash. You can choose to allocate your investments in any way you see fit.</p>
             <p>Making investment decisions requires understanding tradeoffs. Assets such as stocks have higher returns and earn more money in the long run, however, stocks also have high volatility, meaning they fluctuate more and you can lose money. Stocks are generally a good long term investment. Bonds have lower returns than stocks, but they also don't fluctuate as much. Finally, cash does does not generate returns, but it is impossible to lose money. Cash is a poor long term investment.</p>
             <p>Good retirement portfolios have a mix of stocks, bonds and cash. However, the percentage a person sets aside for each type of asset is a personal choice and depends on his or her adversity to risk.</p>
             <h2>Investment characteristics</h2>
@@ -44,17 +44,17 @@
                 <td>Volatility (fluctuation potential)</td>
               </tr>
               <tr>
-                <td>Stocks</td>
+                <td>Stocks <div class="info" title="Stocks tend to provide the highest returns on your investment, but they can fluctuate dramatically. There is potential to lose money when investing in stocks." rel="tooltip" data-toggle="tooltip" data-placement="right"></div></td>
                 <td>7.8%</td>
                 <td>15%</td>
               </tr>
               <tr>
-                <td>Bonds</td>
+                <td>Bonds <div class="info" title="Bonds provide lower returns than stocks, but fluctuate less. There is less potential to lose money with stocks." rel="tooltip" data-toggle="tooltip" data-placement="right"></div></td>
                 <td>6.5%</td>
                 <td>4%</td>
               </tr>
               <tr>
-                <td>Cash</td>
+                <td>Cash <div class="info" title="Cash provides no returns, but does not fluctuate and you cannot lose money." rel="tooltip" data-toggle="tooltip" data-placement="right"></div></td>
                 <td>0%</td>
                 <td>0%</td>
               </tr>
@@ -70,9 +70,9 @@
               <div class="clear"></div>
               <label>Percent cash</label><input type="text" value="0" name="pcash" class="asset" id="inputPCash">%
               <div class="clear"></div>
-              <label>Years</label><input type="text" value="34" name="years" class="asset" id="inputYears">
+              <label>Years until retirement</label><input type="text" value="34" name="years" class="asset" id="inputYears">
               <div class="clear"></div>
-              <label>Yearly amount saved ($)</label><input type="text" value="7500" name="amount" class="asset" id="inputAmount">
+              <label>Yearly amount saved ($)</label><input type="text" value="10000" name="amount" class="asset" id="inputAmount">
               <div class="clear"></div>
               <div class="marg">
                 <div id="calcMsg" class="red">Percentages must add up to 100%.</div>
@@ -156,46 +156,13 @@
                 <td>$0.00</td>
               </tr>
 
-              <tr>
-                
-                <td>$250,000</td>
-                <td>$500,000</td>
-                <td>$0.00</td>
-              </tr>
-
-              <tr> 
-                <td>$375,000</td>
-                <td>$500,000</td>
-                <td>$0.50</td>
-              </tr>
-
-              <tr>
-                
-                <td>$500,000</td>
-                <td>$500,000</td>
-                <td>$1.00</td>
-              </tr>
-
-              <tr> 
-                <td>$625,000</td>
-                <td>$500,000</td>
-                <td>$0.50</td>
-              </tr>
-
-               <tr>
-                
-                <td>$1,000,000</td>
-                <td>$500,000</td>
-                <td>$0.00</td>
-              </tr>
-
             </table>
 
 <hr>
 <h1>Your retirement goal</h1>
           <p>Enter your retirement savings goal for this retirement simulation. Please think about this amount carefully as this dollar amount will be used as your target goal during the simulation.</p>
 	  <p>Set this goal as close to your final expected amount as possible. Setting this too low or too high will lead to a negative outcome.</p>
-          $<input type="text" value="1000000" name="goal" class="final-goal" id="inputGoal">
+          $<input type="text" value="1500000" name="goal" class="final-goal" id="inputGoal">
 
            
           </div>

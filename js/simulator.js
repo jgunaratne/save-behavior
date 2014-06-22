@@ -16,6 +16,9 @@ var uid = $('#inputUID').val()*1;
 var goal = $('#inputGoal').val()*1;
 var futureYearNum = 33;
 
+// 1.7
+// 1.2
+
 var App = function() {
 
 };
@@ -508,8 +511,9 @@ App.prototype.getUser = function() {
 };
 
 App.prototype.completed = function() {
+	var t = this;
 	$('#completeMsg').show();
-	$('#pageData, #pageMsg').hide();
+	$('.page-data, #pageMsg').hide();
 
 	$.ajax({
 		type: "GET",
@@ -520,7 +524,8 @@ App.prototype.completed = function() {
 		success: function(data) {
 			var vals = data.split(',');
 			$('#reward').html(vals[0]);
-			console.log(data);
+			$('#goalAmount').html(t.numberWithCommas(vals[1]));
+			$('#finalAmount').html(t.numberWithCommas(vals[2]));
 		}
 	});
 };
