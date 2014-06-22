@@ -1,4 +1,4 @@
-<?
+<?php
 
 $mtwid = $_GET["mtwid"];
 $goal = $_GET["goal"];
