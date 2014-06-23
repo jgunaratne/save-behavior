@@ -93,7 +93,22 @@ App.prototype.addEvents = function() {
 	});
 
 	$('#continueBtn').click(function(e) {
-		t.createUser();
+
+		if ($('#inputAge').val() == '' || 
+			$('form')[0].gender.value == '' ||
+			$('form')[0].experience.value == '' ||
+			$('form')[0].hasretire.value == '' ||
+			$('form')[0].retirementamount.value == ''
+			) {
+			$('#questionMsg').show();
+			window.scrollTo(0, 0);
+		} else {
+			var age = $('#inputAge').val().replace(/\D/g,'');
+			$('#inputAge').val(age);
+			var retirementAmount = $('#inputRetirementAmount').val().replace(/\D/g,'');
+			$('#inputRetirementAmount').val(retirementAmount);
+			t.createUser();
+		}
 		return false;
 	});
 
@@ -112,7 +127,12 @@ App.prototype.createUser = function() {
 		url: "api/create_user.php",
 		data: { 
 			mtwid: $('#mtwid').val(),
-			goal: $('#inputGoal').val()
+			goal: $('#inputGoal').val(),
+			age: $('#inputAge').val(),
+			gender: $('form')[0].gender.value,
+			experience: $('form')[0].experience.value,
+			hasretire: $('form')[0].hasretire.value,
+			retirementamount: $('form')[0].retirementamount.value
 		},
 		success: function(data) {
 			document.location = 'simulator.php?usercode='+data;
@@ -124,6 +144,7 @@ App.prototype.init = function() {
 	var t = this;
 	t.addEvents();
 	t.calcEstOutcome();
+	$('#questionMsg').hide();
 };
 
 var app = new App();

@@ -446,8 +446,8 @@ App.prototype.addEvents = function() {
 				var serialized = $('#yearForm').serialize();
 				$.get('api/save_month.php?' + serialized).done(function() {
 					t.getSum();
+					t.clearPercents();
 				});
-
 			}
 		} else {
 			
@@ -533,6 +533,12 @@ App.prototype.completed = function() {
 			$('#finalAmount').html(t.numberWithCommas(vals[2]));
 		}
 	});
+};
+
+App.prototype.clearPercents = function() {
+	$('#inputPStock').val('0');
+	$('#inputPBond').val('0');
+	$('#inputPCash').val('0');
 };
 
 App.prototype.init = function() {

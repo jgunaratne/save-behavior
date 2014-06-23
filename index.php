@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
-    <form action="simulator.php">
+    <form action="simulator.php" id="form">
       <input type="hidden" name="mtwid" value="<?php echo $mtwid ?>" id="mtwid">
       <div class="container">
       <div class="row">
@@ -33,6 +33,33 @@
           <div class="study-copy">
             <h1>Retirement investment study</h1>
             <p>Thank you for participating in this retirement saving study conducted by researchers at New York University. This study simulates retirement investing over a 34 year period. This study will take about 20-30 minutes of your time. You will be shown 34 screens where you will be presented with investment choices.</p>
+            
+            <h2>Pre-study questions</h2>
+            <p><label>How old are you?</label><input type="text" name="age" id="inputAge"><br><br></p>
+            <p><label>Gender:</label>
+              <br><input type="radio" name="gender" value="male"><label>Male</label>
+              <br><input type="radio" name="gender" value="female"><label>Female</label><br><br>
+            </p>
+            <p><label>What is your level of investing experience?</label>
+              <br><input type="radio" name="experience" value="0"><label>None/No experience</label>
+              <br><input type="radio" name="experience" value="1"><label>Novice</label>
+              <br><input type="radio" name="experience" value="2"><label>Intermediate</label>
+              <br><input type="radio" name="experience" value="3"><label>Expert</label><br><br>
+            </p>
+            <p><label>Do you have retirement investments such as a 401k?</label>
+              <br><input type="radio" name="hasretire" value="1"><label>Yes</label>
+              <br><input type="radio" name="hasretire" value="0"><label>No</label><br><br>
+            </p>
+            <p><label>How much do you have saved for retirement (enter 0 if you have no retirement investments)?</label>
+              <br><label>$</label><input type="text" name="retirementamount" id="inputRetirementAmount"><br><br>
+            </p>
+
+            <div class="marg">
+                <div id="questionMsg" class="red">Please complete all questions to continue.</div>
+              </div>
+
+            <hr>
+            <h2>Study description</h2>
             <p>For each year simulated in the study you have $10,000 to invest. You have three choices of investments (also known as asset types): stocks, bonds and cash. You can choose to allocate your investments in any way you see fit.</p>
             <p>Making investment decisions requires understanding tradeoffs. Assets such as stocks have higher returns and earn more money in the long run, however, stocks also have high volatility, meaning they fluctuate more and you can lose money. Stocks are generally a good long term investment. Bonds have lower returns than stocks, but they also don't fluctuate as much. Finally, cash does does not generate returns, but it is impossible to lose money. Cash is a poor long term investment.</p>
             <p>Good retirement portfolios have a mix of stocks, bonds and cash. However, the percentage a person sets aside for each type of asset is a personal choice and depends on his or her adversity to risk.</p>

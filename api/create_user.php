@@ -29,6 +29,12 @@ $year = 1980;
 $reward = null;
 $totalvalue = 0;
 
+$age = intval($_GET["age"]);
+$gender = $_GET["gender"];
+$experience = intval($_GET["experience"]);
+$hasretire = intval($_GET["hasretire"]);
+$retirementamount = floatval($_GET["retirementamount"]);
+
 if ($mtwid == null) {
 	$mtwid = "NONE";
 }
@@ -45,7 +51,7 @@ if ($groupid > 3) {
 	$groupid = 1;
 }
 
-$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue);";
+$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue, $age, $experience, $hasretire, '$gender', $retirementamount);";
 $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
 echo $usercode;
