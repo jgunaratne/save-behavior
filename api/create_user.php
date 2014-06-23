@@ -29,11 +29,12 @@ $year = 1980;
 $reward = null;
 $totalvalue = 0;
 
-$age = intval($_GET["age"]);
-$gender = $_GET["gender"];
-$experience = intval($_GET["experience"]);
-$hasretire = intval($_GET["hasretire"]);
-$retirementamount = floatval($_GET["retirementamount"]);
+
+$age = isset($_GET["age"]) ?  intval($_GET["age"]) : 0;
+$gender = isset($_GET["gender"]) ?  $_GET["gender"] : "Unknown";
+$experience =  isset($_GET["experience"]) ?  intval($_GET["experience"]) : 0;
+$hasretire =  isset($_GET["hasretire"]) ?  intval($_GET["hasretire"]) : 0;
+$retirementamount =  isset($_GET["retirementamount"]) ?  floatval($_GET["retirementamount"]) : 0;
 
 if ($mtwid == null) {
 	$mtwid = "NONE";
