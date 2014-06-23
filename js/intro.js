@@ -129,9 +129,9 @@ App.prototype.createUser = function() {
 			mtwid: $('#mtwid').val(),
 			goal: $('#inputGoal').val(),
 			age: $('#inputAge').val(),
-			gender: $('form')[0].gender.value,
-			experience: $('form')[0].experience.value,
-			hasretire: $('form')[0].hasretire.value,
+			gender: document.querySelector('input[name="gender"]:checked').value,
+			experience: document.querySelector('input[name="experience"]:checked').value,
+			hasretire: document.querySelector('input[name="hasretire"]:checked').value,
 			retirementamount: $('form')[0].retirementamount.value
 		},
 		success: function(data) {
