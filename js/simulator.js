@@ -420,10 +420,17 @@ App.prototype.addEvents = function() {
 		t.updateEstimate();
 	});
 
+	$('#inputPStock, #inputPBond, #inputPCash').click(function() {
+		$(this).val('');
+	});
+
 	$('#inputPStock, #inputPBond, #inputPCash').blur(function() {
 		var nval = $(this).val().replace(/\D/g,'');
+		if (nval == '') {
+			nval = 0;
+		}
 		$(this).val(nval);
-	})
+	});
 
 	$('#yearForm').submit(function(e) {
 
