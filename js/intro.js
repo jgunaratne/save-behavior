@@ -69,7 +69,7 @@ App.prototype.calcEstOutcome = function() {
 		$('#estimate').text('$'+t.numberWithCommas(estLikely));
 		$('#estimateHigh').text('$'+t.numberWithCommas(estHigh));
 
-		$('#inputGoal').val(estLikely);
+		//$('#inputGoal').val(estLikely);
 	}
 
 	

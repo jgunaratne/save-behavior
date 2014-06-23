@@ -1,4 +1,7 @@
 <?php
+
+$usercode = $_GET['usercode'];
+
 header("Expires: Mon, 26 Jul 12012 05:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -11,7 +14,7 @@ mysql_select_db("retire") or die(mysql_error());
 date_default_timezone_set("America/New_York");
 
 $today = date("Y-m-d");
-$query_sum = "SELECT modified FROM `activity` WHERE modified > '$today';";
+$query_sum = "SELECT modified FROM `activity` WHERE modified > '$today' AND usercode = '$usercode';";
 $result_sum = mysql_query($query_sum) or die('Query failed: ' . mysql_error());
 
 $count = 0;

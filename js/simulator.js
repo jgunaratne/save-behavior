@@ -392,19 +392,24 @@ App.prototype.updateCases = function() {
 	$('#bestCase').text('$'+t.numberWithCommas(estHigh));
 };
 
-App.prototype.checkDateCount = function(callback) {
+App.prototype.getDateCount = function(callback) {
 	$.ajax({
 		type: "GET",
 		url: "api/date_count.php",
+		data: { 
+			usercode: $('#inputUsercode').val()
+		},
 		success: function(data) {
 			var count = Math.round(data*1);
-			if (count > 500) {
-				$('#pageData').hide();
-				$('#pageMsg').show();
+			/*
+			if (count > 5 && count < 34) {
+				$('.page-data').hide();
+				$('#returnMsg').show();
 			} else {
-				$('#pageData').show();
-				$('#pageMsg').hide();
+				$('.page-data').show();
+				$('#returnMsg').hide();
 			}
+			*/
 		}
 	});
 };
@@ -452,7 +457,7 @@ App.prototype.addEvents = function() {
 			
 		}
 		window.scrollTo(0, 0);
-		t.checkDateCount();
+		t.getDateCount();
 		e.preventDefault();
 	});
 };
@@ -534,7 +539,7 @@ App.prototype.init = function() {
 	var t = this;
 	t.getUser();
 	t.addEvents();
-	t.checkDateCount();
+	t.getDateCount();
 	t.renderBalanceChart();
 	t.renderHistChart(function() {
 		$('#inputYear').val(currYear);
@@ -547,6 +552,7 @@ App.prototype.init = function() {
 	$('#balanceChart, #histChart').hide();
 	$('.endowment-effect, .loss-aversion').hide();
 	$('#calcMsg').hide();
+	$('.info').tooltip();
 
 };
 

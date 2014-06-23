@@ -206,6 +206,10 @@ input[type=text].final-goal {
   display: none;
 }
 
+#returnMsg {
+  display: none;
+}
+
 input[disabled] {
   background: none;
   opacity: .5;
