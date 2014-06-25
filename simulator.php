@@ -37,7 +37,7 @@
         <div class="row page-data">
           <div class="col-md-6 weights">
             <div id="balanceChart"></div>
-            <p>Adjust your stock, bond and cash percentages to change risk and reward.</p>
+            <p>Adjust your stock, bond and cash percentages of your entire retirement saving in order to change risk and reward.</p>
             <label>
               Percent stock 
               <div class="info" title="Stocks tend to provide the highest returns on your investment, but they can fluctuate dramatically. There is potential to lose money when investing in stocks." rel="tooltip" data-toggle="tooltip" data-placement="right"></div>
@@ -66,7 +66,7 @@
             <div id="histChart"></div>
             <h2>Your progress in savings<br> towards retirement in 2048</h2>
             <div class="savings amount">
-              <label>Amount saved to date</label>
+              <label>Amount saved to date<br>(Your actual persent savings)</label>
               <div id="sum" class="save hide">0</div>
               <div id="displaySum" class="save"></div>
             </div>
@@ -138,14 +138,14 @@
             </div>
             <div class="col-md-4">
               <div class="num-group">
-                Difference 
+                Difference from your goal
                 <div class="info" title="This the estimated gain or loss based on your asset allocations. In other words, this is the amount estimated of how far you are away from your goal. You can change your stock, bond and cash allocations to attempt to move closer to your goal." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
                 <div class="endowment-value" id="gainLossValue">$0</div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="num-group">
-                Final estimated amount 
+                Estimated final savings 
                 <div class="info" title="This the estimated final amount based on your asset allocations." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
                 <div class="endowment-value" id="currentValue">$0</div>
               </div>

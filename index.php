@@ -41,16 +41,18 @@
               <br><input type="radio" name="gender" value="female"><label>Female</label><br><br>
             </p>
             <p><label>What is your level of investing experience?</label>
-              <br><input type="radio" name="experience" value="0"><label>None/No experience</label>
-              <br><input type="radio" name="experience" value="1"><label>Novice</label>
-              <br><input type="radio" name="experience" value="2"><label>Intermediate</label>
-              <br><input type="radio" name="experience" value="3"><label>Expert</label><br><br>
+              
+              <br><input type="radio" name="experience" value="1"><label>None/No experience</label>
+              <br><input type="radio" name="experience" value="2"><label>Novice</label>
+              <br><input type="radio" name="experience" value="3"><label>Intermediate</label>
+              <br><input type="radio" name="experience" value="4"><label>Expert</label>
+              <br><input type="radio" name="experience" value="0"><label>Not sure</label><br><br>
             </p>
-            <p><label>Do you have retirement investments such as a 401k?</label>
+            <p><label>Do you have a retirement savings plan such as a 401k?</label>
               <br><input type="radio" name="hasretire" value="1"><label>Yes</label>
               <br><input type="radio" name="hasretire" value="0"><label>No</label><br><br>
             </p>
-            <p><label>How much do you have saved for retirement (enter 0 if you have no retirement investments)?</label>
+            <p><label>How much do you have saved for retirement so far (enter 0 if you have no retirement savings)?</label>
               <br><label>$</label><input type="text" name="retirementamount" id="inputRetirementAmount"><br><br>
             </p>
 
@@ -70,7 +72,7 @@
             <table>
               <tr>
                 <td>Asset type</td>
-                <td>Return each year</td>
+                <td>Average return each year</td>
                 <td>Fluctuation potential (<a href="http://www.investopedia.com/terms/v/volatility.asp" target="_blank">Volatility</a>) <div class="info" title=" Volatility refers to the amount of uncertainty or risk about the size of changes in a security's value. A higher volatility means that a security's value can potentially be spread out over a larger range of values. This means that the price of the security can change dramatically over a short time period in either direction. A lower volatility means that a security's value does not fluctuate dramatically, but changes in value at a steady pace over a period of time."  rel="tooltip" data-toggle="tooltip" data-placement="bottom"></div></td>
               </tr>
               <tr>
@@ -100,7 +102,7 @@
             </table>
             <hr>
             <h2>Estimating investment performance</h2>
-            <p>Use the calculator below to calculate an estimate of your investment performance. By adjusting the percentage weights of stocks, bonds and cash, you can get an idea of how much money your investments will generate over time.</p>
+            <p>Change percents using the calculator below to calculate an estimate of your investment performance. By adjusting the percentage weights of stocks, bonds and cash, you can get an idea of how much money your investments will generate over time.</p>
             <div class="weights">
               <p>Adjust stock, bond and cash percentages to change risk and reward to see how different percentage allocations affect overall performance.</p>
               <label>Percent stock</label><input type="text" value="0" name="pstock" class="asset" id="inputPStock">%
@@ -135,7 +137,7 @@
               <p>At the end of the 34 year simulation you will be shown the final amount of your investment.</p>
               <p>Stock and bond performance in this retirement simulation is randomly generated, but has the same return and volatility attributes you saw in the investment characteristics table.</p>
               <h2>Mechanical Turk sample reward amounts</h2>
-              <p>Stick to your goal. Your reward is based on how close your final amount is to your goal. You are not rewarded for outperforming your goal. The closer your estimate is to the final amount the greater your Mechanical Turk reward. Reward amounts decrease substantial the further you deviate from your goal. Being substantially above your goal is as bad as being substantially below your goal. Below are some sample reward amounts you may receive from Mechanical Turk for completing this study:</p>
+              <p>Stick to your goal. Your reward is based on how close your final amount is to your goal. <strong>You are not rewarded for outperforming your goal.</strong> The closer your estimate is to the final amount the greater your Mechanical Turk reward. Reward amounts decrease substantial the further you deviate from your goal. Being substantially above your goal is as bad as being substantially below your goal. Below are some sample reward amounts you may receive from Mechanical Turk for completing this study:</p>
               <table>
                 <tr>
                   <td>Final amount</td>

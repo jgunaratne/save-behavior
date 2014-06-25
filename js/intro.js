@@ -81,6 +81,15 @@ App.prototype.addEvents = function() {
 		t.calcEstOutcome();
 	});
 
+	$('#inputAge').change(function() {
+		var val = $(this).val() ;
+		if (isNaN(+val)) {
+			alert('Please enter a number for your age.');
+			$(this).val('');
+		}
+
+	});
+
 	$('#calcBtn').click(function(e) {
 		t.calcEstOutcome();
 		e.preventDefault();
