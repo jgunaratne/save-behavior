@@ -19,10 +19,11 @@ while($row = mysql_fetch_array($res2)) {
 	$totalvalue = round(sprintf('%f', $row['totalvalue']));
 	$diff = abs($goal - $totalvalue);
 	$percent = 1-abs(($totalvalue-$goal)/$goal)*4;
-	$reward = round($percent * 100) / 100;
+	$reward = round($percent * 400) / 100;
 	if ($reward < 0) {
 		$reward = 0;
 	}
+	$reward += 1;
 }
 
 $q3 = "UPDATE user SET reward = $reward WHERE usercode = '$usercode';";

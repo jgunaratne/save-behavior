@@ -42,19 +42,19 @@
               Percent stock 
               <div class="info" title="Stocks tend to provide the highest returns on your investment, but they can fluctuate dramatically. There is potential to lose money when investing in stocks." rel="tooltip" data-toggle="tooltip" data-placement="right"></div>
             </label>
-            <input type="text" value="0" name="pstock" class="asset" id="inputPStock">%
+            <input type="text" value="0" name="pstock" class="asset" id="inputPStock">% <span class="previous-percent" id="prevPStock">(Previous: <span class="prev-amount">0</span>%)</span>
             <div class="clear"></div>
             <label>
               Percent bond 
               <div class="info" title="Bonds provide lower returns than stocks, but fluctuate less. There is less potential to lose money with stocks." rel="tooltip" data-toggle="tooltip" data-placement="right"></div>
             </label>
-            <input type="text" value="0" name="pbond" class="asset" id="inputPBond">%
+            <input type="text" value="0" name="pbond" class="asset" id="inputPBond">% <span class="previous-percent" id="prevPBond">(Previous: <span class="prev-amount">0</span>%)</span>
             <div class="clear"></div>
             <label>
               Percent cash 
               <div class="info" title="Cash provides no returns, but does not fluctuate and you cannot lose money." rel="tooltip" data-toggle="tooltip" data-placement="right"></div>
             </label>
-            <input type="text" value="0" name="pcash" class="asset" id="inputPCash">%
+            <input type="text" value="0" name="pcash" class="asset" id="inputPCash">% <span class="previous-percent" id="prevPCash">(Previous: <span class="prev-amount">0</span>%)</span>
             <div class="clear"></div>
             <label>Yearly amount saved</label><input type="text" value="10000" name="amount2" class="asset" disabled>
             <input type="hidden" value="10000" name="amount" class="asset" id="inputAmount">

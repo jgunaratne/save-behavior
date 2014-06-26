@@ -546,6 +546,12 @@ App.prototype.completed = function() {
 };
 
 App.prototype.clearPercents = function() {
+	if (groupid == 5) {
+		$('.previous-percent').show();
+		$('#prevPStock .prev-amount').html($('#inputPStock').val());
+		$('#prevPBond .prev-amount').html($('#inputPBond').val());
+		$('#prevPCash .prev-amount').html($('#inputPCash').val());	
+	}
 	$('#inputPStock').val('0');
 	$('#inputPBond').val('0');
 	$('#inputPCash').val('0');

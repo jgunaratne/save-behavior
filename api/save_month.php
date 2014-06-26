@@ -24,10 +24,10 @@ function readCSV($csvFile, $type){
 	while (!feof($file_handle) ) {
 		$line_array = fgetcsv($file_handle, 1024);
 		$line_key = substr($line_array[0],0,-3);
-		if ($type == 'stock') {
+		//if ($type == 'stock') {
 			// Add more volatility to stock performance
-			$line_array[4] = $line_array[4] * (1 + (rand(-10,10)/100));
-		}
+		//	$line_array[4] = $line_array[4] * (1 + (rand(-10,10)/100));
+		//}
 		$line_hash[$line_key] = $line_array;
 	}
 	fclose($file_handle);
