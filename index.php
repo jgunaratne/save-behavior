@@ -35,12 +35,12 @@
             <p>Thank you for participating in this retirement saving study conducted by researchers at New York University. This study simulates retirement investing over a 34 year period. This study will take about 20-30 minutes of your time. You will be shown 34 screens where you will be presented with investment choices.</p>
             
             <h2>Pre-study questions</h2>
-            <p><label>How old are you?</label><input type="text" name="age" id="inputAge"><br><br></p>
-            <p><label>Gender:</label>
+            <p>How old are you? <input type="text" name="age" id="inputAge"><br><br></p>
+            <p>Gender:
               <br><input type="radio" name="gender" value="male"><label>Male</label>
               <br><input type="radio" name="gender" value="female"><label>Female</label><br><br>
             </p>
-            <p><label>What is your level of investing experience?</label>
+            <p>What is your level of investing experience?
               
               <br><input type="radio" name="experience" value="1"><label>None/No experience</label>
               <br><input type="radio" name="experience" value="2"><label>Novice</label>
@@ -48,11 +48,11 @@
               <br><input type="radio" name="experience" value="4"><label>Expert</label>
               <br><input type="radio" name="experience" value="0"><label>Not sure</label><br><br>
             </p>
-            <p><label>Do you have a retirement savings plan such as a 401k?</label>
+            <p>Do you have a retirement savings plan such as a 401k?
               <br><input type="radio" name="hasretire" value="1"><label>Yes</label>
               <br><input type="radio" name="hasretire" value="0"><label>No</label><br><br>
             </p>
-            <p><label>How much do you have saved for retirement so far (enter 0 if you have no retirement savings)?</label>
+            <p>How much do you have saved for retirement so far (enter 0 if you have no retirement savings)?
               <br><label>$</label><input type="text" name="retirementamount" id="inputRetirementAmount"><br><br>
             </p>
 

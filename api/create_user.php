@@ -48,7 +48,7 @@ $result1 = mysql_query($query1) or die('Query failed: ' . mysql_error());
 while($row = mysql_fetch_array($result1)) {
 	$groupid = $row[0] + 1;
 }
-if ($groupid > 3) {
+if ($groupid > 5) {
 	$groupid = 1;
 }
 

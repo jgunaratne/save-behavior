@@ -1,5 +1,5 @@
 body {
-  font-family: franklin;
+  font-family: Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -86,7 +86,6 @@ text {
 
 .outcome .future-val {
   font-size: 24px;
-  font-family: stymie;
   font-weight: normal;
 }
 
@@ -108,17 +107,14 @@ text {
 
 .save {
   font-size: 36px;
-  font-family: stymie;
 }
 
 h2 {
-  font-family: stymie;
   font-size: 24px;
   margin: 20px 0;
 }
 
 h1 {
-  font-family: stymie;
   font-size: 36px;
   margin: 20px 0;
 }
@@ -154,7 +150,6 @@ input[disabled] {
 }
 
 input[type=text] {
-  font-family: stymie;
   font-size: 24px;
   border: none;
   border-bottom: 1px solid #ccc;
@@ -168,8 +163,11 @@ input[type=text].std-fld {
   text-align: left;
 }
 
+input[type=radio] {
+  margin-right: 5px;
+}
+
 .endowment-value {
-  font-family: stymie;
   font-size: 36px;
 }
 

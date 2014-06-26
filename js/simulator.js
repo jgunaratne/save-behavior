@@ -15,6 +15,7 @@ var currMonth = 1;
 var uid = $('#inputUID').val()*1;
 var goal = $('#inputGoal').val()*1;
 var futureYearNum = 33;
+var groupid = 1;
 
 // 1.7
 // 1.2
@@ -453,7 +454,9 @@ App.prototype.addEvents = function() {
 				var serialized = $('#yearForm').serialize();
 				$.get('api/save_month.php?' + serialized).done(function() {
 					t.getSum();
-					t.clearPercents();
+					if (groupid != 4) {
+						t.clearPercents();
+					}
 				});
 			}
 		} else {
