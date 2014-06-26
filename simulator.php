@@ -66,7 +66,7 @@
             <div id="histChart"></div>
             <h2>Your progress in savings<br> towards retirement in 2048</h2>
             <div class="savings amount">
-              <label>Amount saved to date<br>(Your actual persent savings)</label>
+              <label>Amount saved to date<br>(Your actual present savings)</label>
               <div id="sum" class="save hide">0</div>
               <div id="displaySum" class="save"></div>
             </div>
