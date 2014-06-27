@@ -85,8 +85,9 @@ text {
 }
 
 .outcome .future-val {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: normal;
+  font-weight: bold;
 }
 
 .green {

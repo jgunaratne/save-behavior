@@ -203,6 +203,8 @@ $.ajax({
 
 App.prototype.renderPie = function(data) {
 
+	var t = this;
+
 
 	var totalValue = 0;
 	for (var i = 0; i < data.length; i++) {
@@ -211,8 +213,7 @@ App.prototype.renderPie = function(data) {
 
 
 	if (totalValue > 0) {
-		$('#balanceChart, #histChart').show();
-
+		$('#pieChartDesc, #balanceChart, #histChart, #histChartDesc').show();
 	/* ------- PIE SLICES -------*/
 	var slice = svg.select(".slices").selectAll("path.slice")
 		.data(pie(data), key);
@@ -245,7 +246,12 @@ App.prototype.renderPie = function(data) {
 		.append("text")
 		.attr("dy", ".35em")
 		.text(function(d) {
-			return d.data.label;
+			var commaNum = '$' + t.numberWithCommas(Math.round(d.data.value));
+			var label = (d.data.label + ' ' + commaNum);
+			if (d.data.value == 0) {
+				label = '';
+			}
+			return label;
 		});
 	
 	function midAngle(d){
@@ -287,15 +293,17 @@ App.prototype.renderPie = function(data) {
 
 	polyline.transition().duration(1000)
 		.attrTween("points", function(d){
-			this._current = this._current || d;
-			var interpolate = d3.interpolate(this._current, d);
-			this._current = interpolate(0);
-			return function(t) {
-				var d2 = interpolate(t);
-				var pos = outerArc.centroid(d2);
-				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-				return [arc.centroid(d2), outerArc.centroid(d2), pos];
-			};			
+			if (d.data.value != 0) {
+				this._current = this._current || d;
+				var interpolate = d3.interpolate(this._current, d);
+				this._current = interpolate(0);
+				return function(t) {
+					var d2 = interpolate(t);
+					var pos = outerArc.centroid(d2);
+					pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+					return [arc.centroid(d2), outerArc.centroid(d2), pos];
+				};		
+			}	
 		});
 	
 	polyline.exit()
@@ -478,7 +486,7 @@ App.prototype.clearDB = function() {
 		t.getSum();
 		$('#inputYear').val(1980);
 	});
-	$('#balanceChart, #histChart').hide();
+	$('#pieChartDesc, #balanceChart, #histChart, #histChartDesc').hide();
 	alert('DB cleared');
 };
 
@@ -572,7 +580,7 @@ App.prototype.init = function() {
 
 	$('#goal').text('$' + t.numberWithCommas(goal));
 
-	$('#balanceChart, #histChart').hide();
+	$('#pieChartDesc, #balanceChart, #histChart, #histChartDesc').hide();
 	$('.endowment-effect, .loss-aversion').hide();
 	$('#calcMsg').hide();
 	$('.info').tooltip();

@@ -30,7 +30,7 @@
       <div class="container">
         <div class="row page-data">
           <div class="col-md-6">
-            <h1>Retirement portfolio</h1>
+            <h1>Overall retirement portfolio</h1>
           </div>
           <div class="col-md-6">
             <h2>This year: <span id="year">2014</span>; Retiring in 2048</h2>
@@ -38,11 +38,11 @@
         </div>
         <div class="row page-data">
           <div class="col-md-6 weights">
+            <p id="pieChartDesc">The pie chart below shows your overall portfolio allocations for your <strong>entire retirement savings</strong> since you began saving in 2014.</p>
             <div id="balanceChart"></div>
-            <p>The pie chart above shows your overall portfolio allocations for your entire retirement savings since you began saving in 2014.</p>
             <hr>
             <h2>This year's retirement saving allocations</h2>
-            <p>Use the input fields below to adjust this year's retirement saving. Adjusting percentages changes your stock, bond and cash weights, affecting your risk and reward.</p>
+            <p>Use the fields below to adjust <strong>this year's</strong> savings allocation. Adjusting percentages changes your stock, bond and cash weights in your portfolio, affecting your risk and reward. Remember, you can try as many allocations as you wish before pressing Continue.</p>
             <label>
               Percent stock 
               <div class="info" title="Stocks tend to provide the highest returns on your investment, but they can fluctuate dramatically. There is potential to lose money when investing in stocks." rel="tooltip" data-toggle="tooltip" data-placement="right"></div>
@@ -68,8 +68,9 @@
             </div>
           </div>
           <div class="col-md-6 goals">
+            <p id="histChartDesc">The chart below shows the overall total value of your entire retirement portfolio over time since you started saving.</p>
             <div id="histChart"></div>
-            <p>The chart above shows the overall total value of your retirement portfolio over time.</p>
+            
             <h2>Your progress in savings<br> towards retirement in 2048</h2>
             <div class="savings amount no-width">
               <label class="no-width">Amount saved to date (Your actual present savings)</label>
@@ -89,7 +90,7 @@
         <div class="page-data">
           <div class="row loss-aversion">
             <div class="col-md-6">
-              <p>Below are likely outcomes for what a $10,000 investment today will be worth in the future. The likely case is the most probable</p>
+              <p>Below are likely outcomes for what a $10,000 investment today will be worth by the time of "retirement" in 2048. The likely case is the most probable (based on past performance of the stock and bond markets).</p>
               <div>
                 <div class="outcome primary">
                   <div class="future-val" id="savedToday">$0</div>
@@ -146,7 +147,7 @@
             <div class="col-md-4">
               <div class="num-group">
                 Estimated final savings 
-                <div class="info" title="This the estimated final amount based on your asset allocations." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
+                <div class="info" title="This the estimated overall amount of your entire portfolio based on your asset allocations." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
                 <div class="endowment-value" id="currentValue">$0</div>
               </div>
             </div>
