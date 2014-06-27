@@ -181,8 +181,8 @@
               <h1>Your retirement goal</h1>
               <p>Your goal is to save $1,500,000 for your retirement by allocating appropriate amounts to stock, bonds and cash. This number is based on retirement calculation data from Kiplinger.com for someone who saves $10,000 per year over a 34 year period.</p>
               <h2>Retirement savings goal: $1,500,000</h2><input type="hidden" value="1500000" name="goal" class="final-goal" id="inputGoal">
-              <p>You should aim to have around $1,500,000 at the end of this study to earn the maximum Mechanical Turk reward of $1.00. Your Mechanical Turk reward will be less than $1.00 if your final amount is more than $1,500,000 or less than $1,500,000.</p>
-              <p><strong>WARNING: Do not press the back button in your web browser or attempt to restart the study after pressing the Continue button below. Pressing the back button or restarting the survey will invalidate all of your answers and you will not be eligible for your Amazon Mechanical Turk reward. Be sure you read the instructions above before beginning the study.</strong></p>
+              <p>You should aim to have around $1,500,000 at the end of this study to earn the maximum Mechanical Turk bonus of $4.00. Your Mechanical Turk reward will be less than $4.00 if your final amount is more than $1,500,000 or less than $1,500,000.</p>
+              <p><strong>WARNING: Do not press the back button in your web browser or attempt to restart the study after pressing the Continue button below. Pressing the back button or restarting the study will invalidate all of your answers and you will not be eligible for your Amazon Mechanical Turk reward. Be sure you read the instructions above before beginning the study.</strong></p>
             </div>
             <div class="marg">
               <input type="submit" class="btn btn-lg btn-primary" role="button" value="Continue" id="continueBtn">
