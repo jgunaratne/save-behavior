@@ -106,16 +106,12 @@ App.prototype.addEvents = function() {
 		if ($('#inputAge').val() == '' || 
 			$('form')[0].gender.value == '' ||
 			$('form')[0].experience.value == '' ||
-			$('form')[0].hasretire.value == '' ||
-			$('form')[0].retirementamount.value == ''
-			) {
+			$('form')[0].hasretire.value == '') {
 			$('#questionMsg').show();
 			window.scrollTo(0, 0);
 		} else {
 			var age = $('#inputAge').val().replace(/\D/g,'');
 			$('#inputAge').val(age);
-			var retirementAmount = $('#inputRetirementAmount').val().replace(/\D/g,'');
-			$('#inputRetirementAmount').val(retirementAmount);
 			t.createUser();
 		}
 		return false;
@@ -141,7 +137,6 @@ App.prototype.createUser = function() {
 			gender: document.querySelector('input[name="gender"]:checked').value,
 			experience: document.querySelector('input[name="experience"]:checked').value,
 			hasretire: document.querySelector('input[name="hasretire"]:checked').value,
-			retirementamount: $('form')[0].retirementamount.value
 		},
 		success: function(data) {
 			document.location = 'simulator.php?usercode='+data;

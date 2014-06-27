@@ -52,9 +52,6 @@
               <br><input type="radio" name="hasretire" value="1"><label>Yes</label>
               <br><input type="radio" name="hasretire" value="0"><label>No</label><br><br>
             </p>
-            <p>How much do you have saved for retirement so far (enter 0 if you have no retirement savings)?
-              <br><label>$</label><input type="text" name="retirementamount" id="inputRetirementAmount"><br><br>
-            </p>
 
             <div class="marg">
                 <div id="questionMsg" class="red">Please complete all questions to continue.</div>
@@ -135,49 +132,49 @@
               <hr>
               <h1>Earning your Mechnical Turk reward</h1>
               <p>At the end of the 34 year simulation you will be shown the final amount of your investment.</p>
-              <p>Stock and bond performance in this retirement simulation is randomly generated, but has the same return and volatility attributes you saw in the investment characteristics table.</p>
-              <h2>Mechanical Turk sample reward amounts</h2>
-              <p>Stick to your goal. Your reward is based on how close your final amount is to your goal. <strong>You are not rewarded for outperforming your goal.</strong> The closer your estimate is to the final amount the greater your Mechanical Turk reward. Reward amounts decrease substantial the further you deviate from your goal. Being substantially above your goal is as bad as being substantially below your goal. Below are some sample reward amounts you may receive from Mechanical Turk for completing this study:</p>
+              <p>Stock and bond performance in this retirement simulation is randomly generated, but has the same return and volatility attributes you saw in the investment characteristics table above.</p>
+              <h2>Mechanical Turk sample bonus amounts</h2>
+              <p>Stick to your goal. Your bonus is based on how close your final amount is to your goal. <strong>You are not rewarded for outperforming your goal.</strong> The closer your estimate is to the final amount the greater your Mechanical Turk bonus. Bonus amounts decrease substantially the further you deviate from your goal. Being above your goal is as bad as being below your goal. Aim for your goal, no more, no less.</p> <p>Below are some sample bonus amounts you may receive from Mechanical Turk for completing this study. These bonus amounts are in addition to the $1 you will receive for completing the study.</p>
               <table>
                 <tr>
-                  <td>Final amount</td>
+                  <td>Total savings</td>
                   <td>Goal</td>
-                  <td>Reward</td>
+                  <td>Bonus</td>
                 </tr>
                 <tr>
                   <td>$1,000,000</td>
                   <td>$1,500,000</td>
-                  <td>$1.00</td>
+                  <td>$0.00</td>
                 </tr>
                 <tr>
                   <td>$1,250,000</td>
                   <td>$1,500,000</td>
-                  <td>$2.32</td>
+                  <td>$1.32</td>
                 </tr>
                 <tr>
                   <td>$1,400,000</td>
                   <td>$1,500,000</td>
-                  <td>$3.92</td>
+                  <td>$2.92</td>
                 </tr>
                 <tr>
-                  <td>$1,500,000</td>
-                  <td>$1,500,000</td>
-                  <td>$5.00</td>
+                  <td><strong>$1,500,000</strong></td>
+                  <td><strong>$1,500,000</strong></td>
+                  <td><strong>$4.00</strong></td>
                 </tr>
                 <tr>
                   <td>$1,600,000</td>
                   <td>$1,500,000</td>
-                  <td>$3.92</td>
+                  <td>$2.92</td>
                 </tr>
                 <tr>
                   <td>$1,750,000</td>
                   <td>$1,500,000</td>
-                  <td>$2.32</td>
+                  <td>$1.32</td>
                 </tr>
                 <tr>
                   <td>$2,000,000</td>
                   <td>$1,500,000</td>
-                  <td>$1.00</td>
+                  <td>$0.00</td>
                 </tr>
               </table>
               <hr>
@@ -185,6 +182,7 @@
               <p>Your goal is to save $1,500,000 for your retirement by allocating appropriate amounts to stock, bonds and cash. This number is based on retirement calculation data from Kiplinger.com for someone who saves $10,000 per year over a 34 year period.</p>
               <h2>Retirement savings goal: $1,500,000</h2><input type="hidden" value="1500000" name="goal" class="final-goal" id="inputGoal">
               <p>You should aim to have around $1,500,000 at the end of this study to earn the maximum Mechanical Turk reward of $1.00. Your Mechanical Turk reward will be less than $1.00 if your final amount is more than $1,500,000 or less than $1,500,000.</p>
+              <p><strong>WARNING: Do not press the back button in your web browser or attempt to restart the study after pressing the Continue button below. Pressing the back button or restarting the survey will invalidate all of your answers and you will not be eligible for your Amazon Mechanical Turk reward. Be sure you read the instructions above before beginning the study.</strong></p>
             </div>
             <div class="marg">
               <input type="submit" class="btn btn-lg btn-primary" role="button" value="Continue" id="continueBtn">

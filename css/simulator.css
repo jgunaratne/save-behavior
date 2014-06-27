@@ -112,11 +112,13 @@ text {
 h2 {
   font-size: 24px;
   margin: 20px 0;
+  font-weight: bold;
 }
 
 h1 {
   font-size: 36px;
   margin: 20px 0;
+  font-weight: bold;
 }
 
 .no-marg {
@@ -125,6 +127,10 @@ h1 {
 
 .desc {
 
+}
+
+.weights {
+  border-right: 1px solid #ccc;
 }
 
 .weights label {
@@ -191,7 +197,7 @@ input[type=radio] {
 }
 
 hr {
-  margin: 40px 0 60px 0;
+  margin: 20px 0;
 }
 
 input[type=text].final-goal {
@@ -228,4 +234,17 @@ strong {
 .previous-percent {
   font-size: 10px;
   display: none;
+}
+
+.no-width {
+  width: auto;
+}
+
+#displaySum {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+#submitBtn {
+  margin: 0 10px;
 }

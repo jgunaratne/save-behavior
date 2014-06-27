@@ -34,7 +34,7 @@ $age = isset($_GET["age"]) ?  intval($_GET["age"]) : 0;
 $gender = isset($_GET["gender"]) ?  $_GET["gender"] : "Unknown";
 $experience =  isset($_GET["experience"]) ?  intval($_GET["experience"]) : 0;
 $hasretire =  isset($_GET["hasretire"]) ?  intval($_GET["hasretire"]) : 0;
-$retirementamount =  isset($_GET["retirementamount"]) ?  floatval($_GET["retirementamount"]) : 0;
+$retirementamount = 0;
 
 if ($mtwid == null) {
 	$mtwid = "NONE";

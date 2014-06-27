@@ -23,7 +23,7 @@ while($row = mysql_fetch_array($res2)) {
 	if ($reward < 0) {
 		$reward = 0;
 	}
-	$reward += 1;
+	//$reward += 1;
 }
 
 $q3 = "UPDATE user SET reward = $reward WHERE usercode = '$usercode';";

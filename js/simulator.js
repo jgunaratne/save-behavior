@@ -385,7 +385,7 @@ App.prototype.updateCases = function() {
 
 	var estLow = Math.round(t.calcFV(amount,portRet-portVol, remainingYears));
 	var estLikely = t.calcFV(amount,portRet,remainingYears);
-	var estHigh = Math.round(t.calcFV(amount,portRet+portRet, remainingYears));
+	var estHigh = Math.round(t.calcFV(amount,portRet+portRet/Math.sqrt(remainingYears), remainingYears));
 
 	$('#savedToday').text('$'+t.numberWithCommas(amount));
 	$('#worstCase').text('$'+t.numberWithCommas(estLow));
@@ -494,6 +494,7 @@ App.prototype.calcEndowmentVals = function(originalValue, currentValue, gainLoss
 		$('#gainLossValue').addClass('red');
 	} else if (gainLossValue > 0) {
 		$('#gainLossValue').addClass('green');
+		$('#gainLossValue').html('$+' + t.numberWithCommas(gainLossValue));
 	}
 
 };
