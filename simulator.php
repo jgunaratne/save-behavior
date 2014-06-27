@@ -30,7 +30,7 @@
       <div class="container">
         <div class="row page-data">
           <div class="col-md-6">
-            <h1>Overall retirement portfolio</h1>
+            <h1>Your retirement portfolio</h1>
           </div>
           <div class="col-md-6">
             <h2>This year: <span id="year">2014</span>; Retiring in 2048</h2>
@@ -146,8 +146,8 @@
             </div>
             <div class="col-md-4">
               <div class="num-group">
-                Estimated final savings 
-                <div class="info" title="This the estimated overall amount of your entire portfolio based on your asset allocations." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
+                Estimated final savings
+                <div class="info" title="If you continue to invest at your current percent allocations, this is the estimated overall amount your entire portfolio will be worth when you retire." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
                 <div class="endowment-value" id="currentValue">$0</div>
               </div>
             </div>
