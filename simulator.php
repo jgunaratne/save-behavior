@@ -30,14 +30,15 @@
       <div class="container">
         <div class="row page-data">
           <div class="col-md-6">
-            <h1>Your retirement portfolio</h1>
+            <h1>Retirement portfolio simulator</h1>
           </div>
           <div class="col-md-6">
-            <h2>This year: <span id="year">2014</span>; Retiring in 2048</h2>
+            
           </div>
         </div>
         <div class="row page-data">
           <div class="col-md-6 weights">
+            <h2>Your current retirement porfolio</h2>
             <p id="pieChartDesc">The pie chart below shows your overall portfolio allocations for your <strong>entire retirement savings</strong> since you began saving in 2014.</p>
             <div id="balanceChart"></div>
             <hr>
@@ -68,6 +69,7 @@
             </div>
           </div>
           <div class="col-md-6 goals">
+            <h2>This year: <span id="year">2014</span>; Retiring in 2048</h2>
             <p id="histChartDesc">The chart below shows the overall total value of your entire retirement portfolio over time since you started saving.</p>
             <div id="histChart"></div>
             
