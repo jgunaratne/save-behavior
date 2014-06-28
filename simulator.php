@@ -149,7 +149,7 @@
             <div class="col-md-4">
               <div class="num-group">
                 Estimated final savings
-                <div class="info" title="If you continue to invest at your current percent allocations, this is the estimated overall amount your entire portfolio will be worth when you retire." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
+                <div class="info" title="If you continue to invest at your current percent allocations, this is the estimated overall amount your entire portfolio will be worth when you retire. This is only an estimate, stock market fluctuations can change this estimate substantially." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
                 <div class="endowment-value" id="currentValue">$0</div>
               </div>
             </div>
