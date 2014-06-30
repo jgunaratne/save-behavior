@@ -139,13 +139,7 @@
                 <div class="endowment-value" id="originalValue">$0</div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="num-group">
-                Difference from your goal
-                <div class="info" title="This the estimated gain or loss based on your asset allocations. In other words, this is the amount estimated of how far you are away from your goal. You can change your stock, bond and cash allocations to attempt to move closer to your goal." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
-                <div class="endowment-value" id="gainLossValue">$0</div>
-              </div>
-            </div>
+            
             <div class="col-md-4">
               <div class="num-group">
                 Estimated final savings
@@ -153,6 +147,15 @@
                 <div class="endowment-value" id="currentValue">$0</div>
               </div>
             </div>
+
+            <div class="col-md-4">
+              <div class="num-group">
+                Difference from your goal
+                <div class="info" title="This the estimated gain or loss based on your asset allocations. In other words, this is the amount estimated of how far you are away from your goal. You can change your stock, bond and cash allocations to attempt to move closer to your goal." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
+                <div class="endowment-value" id="gainLossValue">$0</div>
+              </div>
+            </div>
+            
           </div>
           <div class="row">
             <div class="col-md-12">
