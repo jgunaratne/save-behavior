@@ -53,7 +53,7 @@ if ($groupid > 5) {
 	$groupid = 1;
 }
 
-$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue, $age, $experience, $hasretire, '$gender', $retirementamount, $comments);";
+$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue, $age, $experience, $hasretire, '$gender', $retirementamount, '$comments');";
 $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
 echo $usercode;
