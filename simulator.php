@@ -16,6 +16,15 @@
       <p>Your final amount is: $<span id="finalAmount"></span>. Your goal was: $<span id="goalAmount"></span>.</p>
       <p>Your Mechanical Turk bonus is: $<span id="reward"></span></p>
       <h2>Your user code is: <?php echo $usercode; ?></h2>
+      <div id="commentsArea">
+        <form id="commentsForm">
+          <label>Please enter any comments you may have about this study below (optional):
+            <div>
+              <textarea name="comments" cols="80" rows="4" id="commentsTextArea"></textarea>
+            </div>
+          <input type="submit" id="submitComments">
+        </form>
+      </div>
     </div>
     <div class="container" id="returnMsg">
       <h1>Please return tomorrow</h1>

@@ -480,6 +480,22 @@ App.prototype.addEvents = function() {
 		t.getDateCount();
 		e.preventDefault();
 	});
+
+	$('#commentsForm').submit(function(e) {
+		$.ajax({
+			type: "GET",
+			url: "api/comments.php",
+			data: { 
+				usercode: $('#inputUsercode').val(),
+				comments: $('#commentsTextArea').val().replace(/'/g,'').replace(/"/g,'')
+			},
+			success: function(data) {
+				$('#commentsArea').html('<p>Thank you for your comments.</p>');
+			}
+		});
+		
+		e.preventDefault();
+	});
 };
 
 App.prototype.clearDB = function() {
