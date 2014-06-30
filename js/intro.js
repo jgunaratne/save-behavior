@@ -61,9 +61,9 @@ App.prototype.calcEstOutcome = function() {
 		$('#calcMsg').hide();
 		
 
-		var estLow = Math.round(t.calcReturns(amount,portRet-portVol, remainingYears));
+		var estLow = Math.round(t.calcReturns(amount,portRet-portRet/Math.sqrt(remainingYears), remainingYears));
 		var estLikely = t.calcReturns(amount,portRet,remainingYears);
-		var estHigh = Math.round(t.calcReturns(amount,portRet+portRet, remainingYears));
+		var estHigh = Math.round(t.calcReturns(amount,portRet+portRet/Math.sqrt(remainingYears), remainingYears));
 
 		$('#estimateLow').text('$'+t.numberWithCommas(estLow));
 		$('#estimate').text('$'+t.numberWithCommas(estLikely));

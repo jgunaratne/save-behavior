@@ -61,7 +61,7 @@ App.prototype.getSum = function() {
 
 App.prototype.renderHistChart = function(callback) {
 	$("#histChart").html('');
-	var margin = {top: 50, right: 50, bottom: 50, left: 50},
+	var margin = {top: 50, right: 50, bottom: 50, left: 70},
     width = 480 - margin.left - margin.right,
     height = 320 - margin.top - margin.bottom;
 
@@ -161,9 +161,11 @@ svg.append("g")
 svg.append("g")
 	.attr("class", "lines");
 
-var width = 480,
-    height = 320,
-	radius = Math.min(width, height) / 2;
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 480 - margin.left - margin.right,
+    height = 320 - margin.top - margin.bottom;
+
+var radius = Math.min(width, height) / 2;
 
 var pie = d3.layout.pie()
 	.sort(null)
@@ -391,7 +393,7 @@ App.prototype.updateCases = function() {
 	var year = $('#inputYear').val();
 	var remainingYears = 2015 - year;
 
-	var estLow = Math.round(t.calcFV(amount,portRet-portVol, remainingYears));
+	var estLow = Math.round(t.calcFV(amount,portRet-portRet/Math.sqrt(remainingYears), remainingYears));
 	var estLikely = t.calcFV(amount,portRet,remainingYears);
 	var estHigh = Math.round(t.calcFV(amount,portRet+portRet/Math.sqrt(remainingYears), remainingYears));
 

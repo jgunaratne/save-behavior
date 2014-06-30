@@ -39,7 +39,7 @@
         <div class="row page-data">
           <div class="col-md-6 weights">
             <h2>Your current retirement porfolio</h2>
-            <p id="pieChartDesc">The pie chart below shows your overall portfolio allocations for your <strong>entire retirement savings</strong> since you began saving in 2014.</p>
+            <p id="pieChartDesc">The pie chart below shows your portfolio allocations for your <strong>entire retirement savings</strong> since you began saving in 2014.</p>
             <div id="balanceChart"></div>
             <hr>
             <h2>This year's retirement saving allocations</h2>
@@ -70,7 +70,7 @@
           </div>
           <div class="col-md-6 goals">
             <h2>This year: <span id="year">2014</span>; Retiring in 2048</h2>
-            <p id="histChartDesc">The chart below shows the overall total value of your entire retirement portfolio over time since you started saving.</p>
+            <p id="histChartDesc">The chart below shows the total value of your entire retirement portfolio over time since you started saving.</p>
             <div id="histChart"></div>
             
             <h2>Your progress in savings<br> towards retirement in 2048</h2>
@@ -149,7 +149,7 @@
             <div class="col-md-4">
               <div class="num-group">
                 Estimated final savings
-                <div class="info" title="If you continue to invest at your current percent allocations, this is the estimated overall amount your entire portfolio will be worth when you retire. This is only an estimate, stock market fluctuations can change this estimate substantially." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
+                <div class="info" title="If you continue to invest at your current percent allocations, this is the estimated amount your entire portfolio will be worth when you retire. This is only an estimate, stock market fluctuations can change this estimate substantially." rel="tooltip" data-toggle="tooltip" data-placement="top"></div>
                 <div class="endowment-value" id="currentValue">$0</div>
               </div>
             </div>

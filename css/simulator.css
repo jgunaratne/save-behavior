@@ -33,6 +33,7 @@ polyline{
 
 text {
   font-size: 10px;
+  background: #fff !important;
 }
 
 #balanceChart svg {
