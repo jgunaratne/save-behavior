@@ -4,8 +4,10 @@ include 'ip.inc';
 $mtwid = $_GET["mtwid"];
 $goal = $_GET["goal"];
 
-$locStr = implode(", ", getClientLocByIP());
-
+$locStr = "";
+if (function_exists("getClientLocByIP")) {
+  $locStr = implode(", ", getClientLocByIP());
+}
 
 function get_client_ip() {
   $ipaddress = '';
