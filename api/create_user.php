@@ -1,7 +1,11 @@
 <?php
+include 'ip.inc';
 
 $mtwid = $_GET["mtwid"];
 $goal = $_GET["goal"];
+
+$locStr = implode(", ", getClientLocByIP());
+
 
 function get_client_ip() {
   $ipaddress = '';
@@ -29,7 +33,7 @@ $year = 1980;
 $reward = null;
 $totalvalue = 0;
 $comments = '';
-
+$location = $locStr;
 
 $age = isset($_GET["age"]) ?  intval($_GET["age"]) : 0;
 $gender = isset($_GET["gender"]) ?  $_GET["gender"] : "Unknown";
@@ -53,7 +57,7 @@ if ($groupid > 5) {
 	$groupid = 1;
 }
 
-$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue, $age, $experience, $hasretire, '$gender', $retirementamount, '$comments');";
+$query2 = "INSERT INTO user VALUES ('$mtwid', '$groupid', '$usercode', '$ip', null, $goal, $year, now(), null, $totalvalue, $age, $experience, $hasretire, '$gender', $retirementamount, '$comments','$location');";
 $result2 = mysql_query($query2) or die('Query failed: ' . mysql_error());
 
 echo $usercode;
