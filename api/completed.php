@@ -18,7 +18,7 @@ while($row = mysql_fetch_array($res2)) {
 	$goal = round(sprintf('%f', $row['goal']));
 	$totalvalue = round(sprintf('%f', $row['totalvalue']));
 	$diff = abs($goal - $totalvalue);
-	$percent = 1-abs(($totalvalue-$goal)/$goal)*6;
+	$percent = 1-abs(($totalvalue-$goal)/$goal)*4;
 	$reward = round($percent * 400) / 100;
 	if ($reward < 0) {
 		$reward = 0;
